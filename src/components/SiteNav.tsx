@@ -1,5 +1,6 @@
 import type { Lang } from "@/lib/i18n";
 import { LANDING } from "@/lib/i18n/landing";
+import { Logo } from "./Logo";
 
 export function SiteNav({ lang, home = true }: { lang: Lang; home?: boolean }) {
   const t = LANDING[lang].nav;
@@ -8,7 +9,7 @@ export function SiteNav({ lang, home = true }: { lang: Lang; home?: boolean }) {
   return (
     <header className="site-nav">
       <div className="container nav">
-        <a className="logo" href={base}><span className="logo-mark">Q</span>Quovra</a>
+        <Logo href={base} />
         <nav className="nav-links" aria-label="Main">
           <a href={anchor("how")} className="hide-md">{t.product}</a>
           <a href={anchor("why")} className="hide-md">{t.why}</a>

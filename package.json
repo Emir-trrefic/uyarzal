@@ -1,6 +1,6 @@
 {
   "name": "quovra",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Make your website quovra by AI. Audit and monitor visibility in ChatGPT, Claude, Perplexity and Google AI Overviews (GEO).",
   "license": "AGPL-3.0-only",

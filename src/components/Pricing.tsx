@@ -10,7 +10,7 @@ function formatPrice(n: number, lang: Lang) {
 }
 
 function CellView({ value, soon }: { value: Cell; soon: string }) {
-  if (value === true) return <span className="yes" aria-label="✓">✓</span>;
+  if (value === true) return <span className="yes" aria-label="✓">●</span>;
   if (value === false) return <span className="no" aria-label="—">—</span>;
   if (value === "soon") return <span className="soon-tag">{soon}</span>;
   return <>{value}</>;
@@ -22,7 +22,8 @@ export function Pricing({ lang }: { lang: Lang }) {
   const [open, setOpen] = useState<string | null>(null);
 
   const price = (p: Plan) => (yearly ? p.yearly : p.monthly);
-  const amount = (p: Plan) => (lang === "tr" ? `${t.currency}${formatPrice(price(p), lang)}` : `${t.currency}${price(p)}`);
+  // The currency sign is set in the sans face: the display serif has no ₺ glyph.
+  const amount = (p: Plan) => <><span className="cur">{t.currency}</span>{formatPrice(price(p), lang)}</>;
 
   return (
     <>
@@ -35,7 +36,7 @@ export function Pricing({ lang }: { lang: Lang }) {
 
       <div className="plans">
         {t.plans.map((p) => (
-          <div className={`card plan${p.featured ? " featured" : ""}`} key={p.id}>
+          <div className={`plan${p.featured ? " featured" : ""}`} key={p.id}>
             {p.featured && <span className="plan-badge">{t.popular}</span>}
             <div>
               <h3>{p.name}</h3>
@@ -77,7 +78,7 @@ export function Pricing({ lang }: { lang: Lang }) {
         </div>
       </details>
 
-      <div className="card service">
+      <div className="service">
         <div>
           <h3>{t.service.title}</h3>
           <p>{t.service.body}</p>

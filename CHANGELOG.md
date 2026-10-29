@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1
+
+### Changed
+- **New visual identity.** An editorial "citation" design replaces the generic startup look: paper and ink colours with one correction-red accent and a highlighter for the visitor's brand; Newsreader with IBM Plex Sans/Mono; ruled lines instead of rounded cards, gradients and shadows; § numbered sections; footnoted statistics.
+- The hero is now asymmetric, with the sample AI answer set as a footnoted excerpt with the brand highlighted.
+- The score ring gives way to a score meter: a large numeral, a stamped grade and an F–A scale.
+- A wordmark logo, an index-style use-case list, a ruled pricing table, and restyled Open Graph image and badge.
+
 ## 0.3.0
 
 ### Added

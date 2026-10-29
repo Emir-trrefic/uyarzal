@@ -7,7 +7,7 @@ import { UI } from "@/lib/i18n/ui";
 import { Report } from "./Report";
 
 /** The audit form and its report. `preview` is shown until the visitor runs their own audit. */
-export function AuditTool({ lang, preview }: { lang: Lang; preview?: React.ReactNode }) {
+export function AuditTool({ lang, preview, footer }: { lang: Lang; preview?: React.ReactNode; footer?: React.ReactNode }) {
   const t = UI[lang].audit;
   const [url, setUrl] = useState("");
   const [multi, setMulti] = useState(false);
@@ -64,28 +64,36 @@ export function AuditTool({ lang, preview }: { lang: Lang; preview?: React.React
     }
   }, [run]);
 
+  // The root uses `display: contents`, so each part below can be placed in the hero's grid.
   return (
-    <div>
-      <form className="audit-form" onSubmit={(e) => { e.preventDefault(); void run(url, multi); }}>
-        <input
-          aria-label={t.inputLabel} placeholder={t.placeholder} value={url} required
-          onChange={(e) => setUrl(e.target.value)} inputMode="url" autoComplete="url"
-        />
-        <button className="btn" disabled={loading}>{loading ? t.running : t.submit}</button>
-      </form>
-      <label className="check-option">
-        <input type="checkbox" checked={multi} onChange={(e) => setMulti(e.target.checked)} disabled={loading} />
-        {t.multi}
-      </label>
-      <p className="hint">{t.hint}</p>
-      {loading && (
-        <ul className="progress">
-          {t.steps.map((s, i) => <li key={s} className={i <= step ? "done" : ""}>{s}</li>)}
-        </ul>
+    <div className="audit-tool">
+      <div className="audit-controls">
+        <form className="audit-form" onSubmit={(e) => { e.preventDefault(); void run(url, multi); }}>
+          <input
+            aria-label={t.inputLabel} placeholder={t.placeholder} value={url} required
+            onChange={(e) => setUrl(e.target.value)} inputMode="url" autoComplete="url"
+          />
+          <button className="btn" disabled={loading}>{loading ? t.running : t.submit}</button>
+        </form>
+        <label className="check-option">
+          <input type="checkbox" checked={multi} onChange={(e) => setMulti(e.target.checked)} disabled={loading} />
+          {t.multi}
+        </label>
+        <p className="hint">{t.hint}</p>
+        {footer}
+      </div>
+      {(loading || error) && (
+        <div className="audit-status">
+          {loading && (
+            <ol className="progress">
+              {t.steps.map((s, i) => <li key={s} className={i <= step ? "done" : ""}>{s}</li>)}
+            </ol>
+          )}
+          {error && <p className="error">{error}</p>}
+        </div>
       )}
-      {error && <p className="error">{error}</p>}
-      {report && <Report report={report} lang={lang} />}
-      {!report && !loading && !error && preview}
+      {report && <div className="audit-report"><Report report={report} lang={lang} /></div>}
+      {!report && !loading && !error && preview && <div className="audit-preview">{preview}</div>}
     </div>
   );
 }

@@ -1,43 +1,52 @@
 import type { Lang } from "@/lib/i18n";
 import { LANDING } from "@/lib/i18n/landing";
-import { UI } from "@/lib/i18n/ui";
-import { ScoreRing } from "./ScoreRing";
 
-/** Static, clearly-labelled example of a report, shown before the visitor runs their own audit. */
+/**
+ * A clearly-labelled example of what Quovra measures, set like a quoted
+ * excerpt: the AI answer with footnoted brands and the visitor's brand
+ * highlighted, followed by the mention counts and the confidence interval.
+ */
 export function SamplePreview({ lang }: { lang: Lang }) {
   const t = LANDING[lang].preview;
-  const r = UI[lang].report;
+  const last = t.rows.length;
   return (
-    <div className="preview" aria-label={t.badge}>
-      <span className="preview-badge">{t.badge}</span>
-      <div className="preview-grid">
-        <div className="card preview-score">
-          <ScoreRing score={58} grade="C" gradeLabel={r.grade} ariaLabel={r.scoreLabel(58, "C")} />
-          <p className="preview-site">{t.site}</p>
-          <ul className="preview-checks">
-            {t.checks.map(([status, text]) => (
-              <li key={text}><span className={`dot ${status}`} />{text}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="card preview-answer">
-          <p className="muted small">{t.answerLabel}</p>
-          <p className="preview-q">{t.question}</p>
-          <ul className="preview-rows">
-            {t.rows.map(([name, share], i) => (
-              <li key={name} className={i === t.rows.length - 1 ? "you" : ""}>
-                <span>{name}</span>
-                <span className="bar"><span style={{ width: `${(Number(share[0]) / 5) * 100}%` }} /></span>
-                <span className="pts">{share}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="preview-sov">
-            <strong>{t.sov}</strong>
-            <span className="muted small">{t.ci}</span>
-          </div>
-        </div>
+    <figure className="excerpt" aria-label={t.badge}>
+      <figcaption className="excerpt-head">
+        <span>{t.badge}</span>
+        <span>{t.source}</span>
+      </figcaption>
+      <p className="excerpt-q">{t.question}</p>
+      <blockquote className="excerpt-a">
+        {t.answer.map((part, i) =>
+          typeof part === "string" ? (
+            <span key={i}>{part}</span>
+          ) : (
+            <span key={i} className={part[1] === last ? "mark" : "named"}>
+              {part[0]}<sup>{part[1]}</sup>
+            </span>
+          ),
+        )}
+      </blockquote>
+      <ol className="excerpt-notes">
+        {t.rows.map(([name, share], i) => (
+          <li key={name} className={i === last - 1 ? "you" : ""}>
+            <span className="fn">{i + 1}</span>
+            <span className="fn-name">{name}{i === last - 1 && <em> ← {t.you}</em>}</span>
+            <span className="fn-dots" aria-hidden />
+            <span className="fn-val">{share}</span>
+          </li>
+        ))}
+      </ol>
+      <div className="excerpt-foot">
+        <strong>{t.sov}</strong>
+        <span>{t.ci}</span>
       </div>
-    </div>
+      <ul className="excerpt-checks">
+        <li className="excerpt-audit">{t.auditLine} <strong>58/100 · C</strong></li>
+        {t.checks.map(([status, text]) => (
+          <li key={text}><span className={`sq ${status}`} aria-hidden />{text}</li>
+        ))}
+      </ul>
+    </figure>
   );
 }

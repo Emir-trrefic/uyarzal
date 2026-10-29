@@ -8,7 +8,7 @@ import { UI } from "@/lib/i18n/ui";
 import { CopyBlock } from "./CopyBlock";
 import { LeadForm } from "./LeadForm";
 import { ProbePanel } from "./ProbePanel";
-import { ScoreRing } from "./ScoreRing";
+import { ScoreMeter } from "./ScoreMeter";
 
 const ORDER = { fail: 0, warn: 1, pass: 2 } as const;
 type Tab = "fixes" | "pages" | "bots" | "files" | "probe";
@@ -61,7 +61,7 @@ export function Report({ report, lang }: { report: AuditReport; lang: Lang }) {
   return (
     <div className="report">
       <div className="card report-head">
-        <ScoreRing score={report.score} grade={report.grade} gradeLabel={t.grade} ariaLabel={t.scoreLabel(report.score, report.grade)} />
+        <ScoreMeter score={report.score} grade={report.grade} gradeLabel={t.grade} ariaLabel={t.scoreLabel(report.score, report.grade)} />
         <div>
           <h2 style={{ margin: "0 0 4px", fontSize: "1.3rem" }}>{host}</h2>
           <p className="muted" style={{ margin: "0 0 4px" }}>{issues === 0 ? t.noIssues : t.issues(issues)}</p>

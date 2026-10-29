@@ -6,6 +6,8 @@ Quovra is an open-source **GEO (Generative Engine Optimization)** toolkit. It au
 
 **Measure. Fix. Prove.** Most AI-visibility tools report a single, noisy answer and stop at monitoring. Quovra measures with repeated runs and confidence intervals, gives you the fixes, and keeps its scoring open source.
 
+![Quovra](docs/screenshot-hero-tr.png)
+
 ![Quovra report](docs/screenshot-report.png)
 
 ## Why
@@ -126,5 +128,3 @@ Scoring: every check has a weight, and the weights sum to 100 across six categor
 ## 🇹🇷 Türkçe özet
 
 **Quovra**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). Strateji, rakip analizi, paketler ve eylem planı: [docs/STRATEJI.md](docs/STRATEJI.md).
-
-![Türkçe çok sayfalı rapor](docs/screenshot-pages-tr.png)
