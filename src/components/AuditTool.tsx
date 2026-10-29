@@ -6,7 +6,8 @@ import type { Lang } from "@/lib/i18n";
 import { UI } from "@/lib/i18n/ui";
 import { Report } from "./Report";
 
-export function AuditTool({ lang }: { lang: Lang }) {
+/** The audit form and its report. `preview` is shown until the visitor runs their own audit. */
+export function AuditTool({ lang, preview }: { lang: Lang; preview?: React.ReactNode }) {
   const t = UI[lang].audit;
   const [url, setUrl] = useState("");
   const [multi, setMulti] = useState(false);
@@ -84,6 +85,7 @@ export function AuditTool({ lang }: { lang: Lang }) {
       )}
       {error && <p className="error">{error}</p>}
       {report && <Report report={report} lang={lang} />}
+      {!report && !loading && !error && preview}
     </div>
   );
 }

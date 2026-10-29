@@ -64,15 +64,29 @@ export function ProbePanel({ lang, defaultBrand, domain }: { lang: Lang; default
       </form>
       {error && <p className="error">{error}</p>}
       {report && (
-        <div style={{ marginTop: 20 }}>
-          <div className="stat">{report.shareOfVoice}%</div>
-          <p>{t.sov(report.answers.length)}</p>
-          {report.answers.map((a) => (
-            <div className="check" key={a.prompt} style={{ paddingLeft: 0, paddingRight: 0 }}>
-              <span className={`pill ${a.mentioned ? "pass" : "fail"}`}>{a.mentioned ? (a.position ? `#${a.position}` : t.named) : t.absent}</span>
+        <div className="probe-result">
+          <div className="probe-head">
+            <div>
+              <div className="stat">{report.shareOfVoice}%</div>
+              <p>{t.sov(report.totalAnswers, report.runsPerPrompt)}</p>
+              <p className="muted small">{t.ci(report.confidence[0], report.confidence[1])} · {t.engine}: {report.engine}</p>
+            </div>
+            {report.topCompetitors.length > 0 && (
               <div>
-                <h4>{a.prompt}</h4>
-                {a.competitors.length > 0 && <p>{t.instead} {a.competitors.join(", ")}</p>}
+                <h4>{t.topCompetitors}</h4>
+                <ol className="competitors">
+                  {report.topCompetitors.map((c) => <li key={c.name}>{c.name} <span className="muted">×{c.count}</span></li>)}
+                </ol>
+              </div>
+            )}
+          </div>
+          {report.results.map((r) => (
+            <div className="check" key={r.prompt} style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <span className={`pill ${r.mentions === r.runs ? "pass" : r.mentions > 0 ? "warn" : "fail"}`}>{t.mentions(r.mentions, r.runs)}</span>
+              <div>
+                <h4>{r.prompt}</h4>
+                {r.avgPosition !== null && <p>{t.avgRank(r.avgPosition)}</p>}
+                {r.competitors.length > 0 && <p>{t.instead} {r.competitors.join(", ")}</p>}
               </div>
               <span />
             </div>

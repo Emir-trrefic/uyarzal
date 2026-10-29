@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import type { Lang } from "./i18n";
-import { UI } from "./i18n/ui";
+import { LANDING } from "./i18n/landing";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://quovra.app";
 export const REPO_URL = "https://github.com/Emir-trrefic/uyarzal";
 
 export function buildMetadata(lang: Lang): Metadata {
-  const t = UI[lang].meta;
+  const t = LANDING[lang].meta;
   return {
     metadataBase: new URL(SITE_URL),
     title: t.title,

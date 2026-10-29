@@ -1,6 +1,6 @@
 export type Status = "pass" | "warn" | "fail";
 
-export type Category = "access" | "structure" | "content" | "trust" | "technical";
+export type Category = "access" | "structure" | "content" | "trust" | "technical" | "agent";
 
 export interface CheckResult {
   id: string;
@@ -34,6 +34,8 @@ export interface PageSnapshot {
 export interface SiteFiles {
   robotsTxt: string | null;
   llmsTxt: string | null;
+  /** /llms-full.txt: the site's full content as Markdown, for agents. */
+  llmsFullTxt?: string | null;
   sitemapFound: boolean;
 }
 

@@ -12,7 +12,7 @@ export * from "./types";
 export { UnsafeUrlError, localizedUrlError, normalizeUrl } from "./ssrf";
 
 export const MAX_PAGES = 10;
-const CATEGORIES: Category[] = ["access", "structure", "content", "trust", "technical"];
+const CATEGORIES: Category[] = ["access", "structure", "content", "trust", "technical", "agent"];
 
 export interface AuditOptions extends FetchOptions {
   lang?: Lang;
@@ -99,12 +99,13 @@ export async function runAudit(input: string, opts: AuditOptions = {}): Promise<
   const final = new URL(page.finalUrl);
   const origin = new URL(final.origin);
 
-  const [robotsTxt, llmsTxt] = await Promise.all([
+  const [robotsTxt, llmsTxt, llmsFullTxt] = await Promise.all([
     fetchText(new URL("/robots.txt", origin), opts),
     fetchText(new URL("/llms.txt", origin), opts),
+    fetchText(new URL("/llms-full.txt", origin), opts),
   ]);
   const sitemap = await sitemapUrls(origin, robotsTxt, opts);
-  const files: SiteFiles = { robotsTxt, llmsTxt, sitemapFound: sitemap.found };
+  const files: SiteFiles = { robotsTxt, llmsTxt, llmsFullTxt, sitemapFound: sitemap.found };
 
   const $ = load(page.html);
   const bots = analyzeBots(robotsTxt);

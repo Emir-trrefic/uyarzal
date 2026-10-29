@@ -1,5 +1,7 @@
 # Quovra — İş Planı ve Pazar Araştırması
 
+> **Güncel strateji, rakip analizi, paketler ve eylem planı için: [STRATEJI.md](STRATEJI.md).** Bu belge ilk araştırmayı içerir; fiyatlar STRATEJI.md'de güncellendi.
+
 *Hazırlanma: Ekim 2026*
 
 ## 1. Neden bu proje?

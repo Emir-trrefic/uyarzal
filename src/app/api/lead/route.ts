@@ -4,7 +4,7 @@ import { clientKey, rateLimit } from "@/lib/ratelimit";
 export const runtime = "nodejs";
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,}$/i;
-const PLANS = ["pro", "agency", "monitoring"];
+const PLANS = ["starter", "growth", "agency", "setup", "monitoring"];
 
 /**
  * Collects upgrade / waitlist sign-ups. Leads are forwarded as JSON to
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
   const lead = {
     email,
-    plan: typeof body.plan === "string" && PLANS.includes(body.plan) ? body.plan : "pro",
+    plan: typeof body.plan === "string" && PLANS.includes(body.plan) ? body.plan : "growth",
     site: typeof body.site === "string" ? body.site.slice(0, 200) : null,
     lang: body.lang === "tr" ? "tr" : "en",
     createdAt: new Date().toISOString(),

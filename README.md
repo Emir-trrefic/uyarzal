@@ -2,7 +2,9 @@
 
 **Get recommended by ChatGPT, Claude, Perplexity and Google AI Overviews.**
 
-Quovra is an open-source **GEO (Generative Engine Optimization)** toolkit. It audits how AI assistants see your website, scores it across 20 weighted checks, and generates the exact fixes: `llms.txt`, Organization JSON-LD and `robots.txt` rules. The optional **AI Mention Probe** asks an AI model the questions your buyers ask and measures your share of voice.
+Quovra is an open-source **GEO (Generative Engine Optimization)** toolkit. It audits how AI assistants see your website, scores it across 22 weighted checks, and generates the exact fixes: `llms.txt`, Organization JSON-LD and `robots.txt` rules. The **AI Mention Probe** asks AI engines the questions your buyers ask, several times each, and reports share of voice with a 95% confidence interval.
+
+**Measure. Fix. Prove.** Most AI-visibility tools report a single, noisy answer and stop at monitoring. Quovra measures with repeated runs and confidence intervals, gives you the fixes, and keeps its scoring open source.
 
 ![Quovra report](docs/screenshot-report.png)
 
@@ -19,11 +21,13 @@ Search is moving from ten blue links to one synthesized answer. If an assistant 
 | **Content** | Text visible **without JavaScript**, lists and tables an LLM can quote, freshness dates, statistics and outbound citations. |
 | **Trust** | Author and organization identity, About and Contact pages. |
 | **Technical** | HTTPS, response time, image alt text. |
+| **Agent readiness** | Product data for AI shopping agents (price, currency, availability, brand, ratings) and Markdown access via `llms-full.txt` or Markdown alternates. |
 | **Fix generator** | Drafts `llms.txt` from your navigation, Organization + WebSite JSON-LD with `sameAs` links, and robots.txt rules for AI search crawlers. |
 | **Whole-site scan** | Crawls up to 10 pages from your sitemap (or homepage links) and ranks them by score, so you see which pages drag visibility down. |
 | **Share & export** | Shareable report links (`/?url=example.com`), Markdown download, print-ready PDF, and an embeddable score badge. |
 | **English & Turkish** | Full UI and reports in both languages (`/` and `/tr`), with hreflang, localized errors and auto-detection in the API. |
-| **AI Mention Probe** | Runs up to 5 buyer questions through Claude, then reports whether you are mentioned, your rank, and the competitors recommended instead. |
+| **AI Mention Probe** | Asks up to 5 buyer questions several times each (default 3), then reports share of voice with a 95% Wilson confidence interval, your average rank and the competitors recommended most. Engines plug in through a `ProbeEngine` interface. |
+| **Methodology page** | `/methodology` and `/tr/yontem` list every check and weight, generated from the code itself. |
 | **Lead capture** | Pricing and in-report waitlist forms post to `/api/lead` and forward to any webhook (Zapier, Make, n8n…). |
 
 ## Quick start
@@ -62,6 +66,7 @@ curl -X POST localhost:3000/api/audit -H 'content-type: application/json' \
 | --- | --- |
 | `ANTHROPIC_API_KEY` | Enables the AI Mention Probe. |
 | `QUOVRA_PROBE_MODEL` | Model for the probe (default `claude-opus-5-5`). |
+| `QUOVRA_PROBE_RUNS` | Times each probe question is asked (default 3, max 5). |
 | `LEAD_WEBHOOK_URL` | HTTPS endpoint that receives sign-ups as JSON. |
 | `NEXT_PUBLIC_SITE_URL` | Public URL, used for metadata, sitemap and share links. |
 | `RATE_LIMIT_PER_HOUR` | Audits per IP per hour (default 20; multi-page scans are limited to 5). |
@@ -93,7 +98,7 @@ src/
 tests/            vitest suite with a fake fetch, no network needed
 ```
 
-Scoring: every check has a weight, and the weights sum to 100. Grade A ≥ 85, B ≥ 70, C ≥ 55, D ≥ 40.
+Scoring: every check has a weight, and the weights sum to 100 across six categories (access 30, structure 29, content 22, trust 7, technical 6, agent readiness 6). Grade A ≥ 85, B ≥ 70, C ≥ 55, D ≥ 40.
 
 ## Deploy
 
@@ -120,6 +125,6 @@ Scoring: every check has a weight, and the weights sum to 100. Grade A ≥ 85, B
 
 ## 🇹🇷 Türkçe özet
 
-**Quovra**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). İş modeli ve pazar araştırması için: [docs/IS_PLANI.md](docs/IS_PLANI.md).
+**Quovra**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). Strateji, rakip analizi, paketler ve eylem planı: [docs/STRATEJI.md](docs/STRATEJI.md).
 
 ![Türkçe çok sayfalı rapor](docs/screenshot-pages-tr.png)

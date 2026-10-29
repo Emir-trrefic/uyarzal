@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
 import type { Lang } from "./i18n";
-import { UI } from "./i18n/ui";
+import { LANDING } from "./i18n/landing";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
 export function ogImage(lang: Lang) {
-  const t = UI[lang].hero;
+  const t = LANDING[lang].hero;
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 72, background: "#0e0d12", color: "#f1f0f5" }}>

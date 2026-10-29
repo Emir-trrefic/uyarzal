@@ -4,7 +4,9 @@ import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 import { UI } from "@/lib/i18n/ui";
 
-export function LeadForm({ lang, plan, site }: { lang: Lang; plan: "pro" | "agency" | "monitoring"; site?: string }) {
+export type LeadPlan = "starter" | "growth" | "agency" | "setup" | "monitoring";
+
+export function LeadForm({ lang, plan, site }: { lang: Lang; plan: LeadPlan; site?: string }) {
   const t = UI[lang].lead;
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "error" | "invalid">("idle");

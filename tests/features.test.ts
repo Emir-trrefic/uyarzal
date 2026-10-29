@@ -144,3 +144,39 @@ describe("llms.txt generator", () => {
     expect(report.generated.llmsTxt).toContain("kime hizmet veriyorsunuz");
   });
 });
+
+describe("agent readiness", () => {
+  const product = (ld: object) => `<!doctype html><html><head><title>Shoe</title>
+    <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", ...ld })}</script></head><body><h1>Shoe</h1></body></html>`;
+  const check = async (html: string, id: string, extra = {}) =>
+    (await runAudit("https://shop.test/p", opts({ "/p": { body: html }, ...extra }))).checks.find((c) => c.id === id)!;
+
+  it("skips product data on non-product pages", async () => {
+    const c = await check("<html><body><h1>About</h1></body></html>", "product-data");
+    expect(c.status).toBe("pass");
+    expect(c.detail).toContain("Not a product page");
+  });
+
+  it("lists missing product fields", async () => {
+    const c = await check(product({ "@type": "Product", name: "Shoe", offers: { "@type": "Offer", price: "49.90" } }), "product-data");
+    expect(c.status).toBe("fail");
+    expect(c.detail).toContain("price + currency");
+    expect(c.detail).toContain("availability");
+  });
+
+  it("passes complete product data", async () => {
+    const c = await check(product({
+      "@type": "Product", name: "Shoe", image: "/s.jpg", brand: { "@type": "Brand", name: "Acme" },
+      aggregateRating: { "@type": "AggregateRating", ratingValue: 4.6, reviewCount: 120 },
+      offers: { "@type": "Offer", price: "49.90", priceCurrency: "TRY", availability: "https://schema.org/InStock" },
+    }), "product-data");
+    expect(c.status).toBe("pass");
+  });
+
+  it("detects llms-full.txt", async () => {
+    const c = await check("<html><body></body></html>", "markdown-access", {
+      "/llms-full.txt": { body: `# Shop\n\n${"Detailed content. ".repeat(30)}`, type: "text/plain" },
+    });
+    expect(c.status).toBe("pass");
+  });
+});

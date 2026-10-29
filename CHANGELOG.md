@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0
+
+### Added
+- **Redesigned website**: sticky navigation, hero with a sample report, engines strip, sourced market statistics, "Measure. Fix. Prove." steps, a comparison table, use-case tabs, a future-proof section, monthly/yearly pricing with four plans and a full capacity table, a done-for-you setup offer, FAQ and a final CTA.
+- **Methodology pages** (`/methodology`, `/tr/yontem`) that list every check and weight straight from the code.
+- **Agent readiness** category: Product JSON-LD completeness for AI shopping agents, and Markdown access (`llms-full.txt` or Markdown alternates). There are now 22 checks.
+- **Statistically sound probe**: every question is asked several times (`QUOVRA_PROBE_RUNS`, default 3), and share of voice comes with a 95% Wilson confidence interval, average rank and the most-recommended competitors. Engines plug in through a `ProbeEngine` interface.
+- Strategy document with market research, competitors, differentiation, plan capacities, unit economics and a phased action plan (`docs/STRATEJI.md`).
+
+### Changed
+- Weights rebalanced to make room for agent readiness. They still sum to 100.
+- Lead capture now records the plan (starter, growth, agency, setup, monitoring).
+- Turkish name matching in the probe treats the dotless ı as i.
+
 ## 0.2.0
 
 ### Added

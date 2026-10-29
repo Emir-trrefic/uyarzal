@@ -49,7 +49,7 @@ const aiTrainingBots: Check = ({ bots }, { aiTraining: m }) => {
   const relevant = bots.filter((b) => b.purpose === "training");
   const blocked = relevant.filter((b) => !b.allowed);
   return result(
-    "ai-training-bots", "access", m.title, 3, 1 - blocked.length / relevant.length,
+    "ai-training-bots", "access", m.title, 2, 1 - blocked.length / relevant.length,
     blocked.length === 0 ? m.ok : m.blocked({ bots: blocked.map((b) => b.bot).join(", ") }),
     m.fix,
   );
@@ -68,7 +68,7 @@ const llmsTxt: Check = ({ files }, { llms: m }) => {
 };
 
 const sitemap: Check = ({ files }, { sitemap: m }) =>
-  result("sitemap", "access", m.title, 3, files.sitemapFound ? 1 : 0, files.sitemapFound ? m.ok : m.missing, m.fix);
+  result("sitemap", "access", m.title, 2, files.sitemapFound ? 1 : 0, files.sitemapFound ? m.ok : m.missing, m.fix);
 
 // ---------- Page-level checks ----------
 
@@ -122,13 +122,13 @@ const titleAndDescription: Check = ({ $ }, { meta: m }) => {
 
 const openGraph: Check = ({ $ }, { og: m }) => {
   const n = ["og:title", "og:description", "og:image"].filter((p) => meta($, p)).length;
-  return result("open-graph", "structure", m.title, 3, n / 3, m.detail({ n }), m.fix);
+  return result("open-graph", "structure", m.title, 2, n / 3, m.detail({ n }), m.fix);
 };
 
 const canonicalLang: Check = ({ $ }, { canonical: m }) => {
   const canonical = !!$('link[rel="canonical"]').attr("href");
   const lang = $("html").attr("lang") ?? null;
-  return result("canonical-lang", "structure", m.title, 3, (canonical ? 0.5 : 0) + (lang ? 0.5 : 0), m.detail({ canonical, lang }), m.fix);
+  return result("canonical-lang", "structure", m.title, 2, (canonical ? 0.5 : 0) + (lang ? 0.5 : 0), m.detail({ canonical, lang }), m.fix);
 };
 
 const serverRendered: Check = ({ $ }, { rendered: m }) => {
@@ -211,21 +211,59 @@ const https: Check = ({ page }, { https: m }) => {
 
 const speed: Check = ({ page }, { speed: m }) => {
   const ms = page.responseMs;
-  return result("speed", "technical", m.title, 3, ms <= 1000 ? 1 : ms <= 2500 ? 0.5 : 0.1, m.detail({ ms }), m.fix);
+  return result("speed", "technical", m.title, 2, ms <= 1000 ? 1 : ms <= 2500 ? 0.5 : 0.1, m.detail({ ms }), m.fix);
 };
 
 const imageAlt: Check = ({ $ }, { alt: m }) => {
   const imgs = $("img");
   const withAlt = imgs.filter((_, el) => !!$(el).attr("alt")?.trim()).length;
   return result(
-    "image-alt", "technical", m.title, 2, imgs.length === 0 ? 1 : withAlt / imgs.length,
+    "image-alt", "technical", m.title, 1, imgs.length === 0 ? 1 : withAlt / imgs.length,
     imgs.length === 0 ? m.none : m.detail({ withAlt, total: imgs.length }),
     m.fix,
   );
 };
 
+// ---------- Agent readiness (AI shopping and task agents) ----------
+
+const PRODUCT_FIELDS = ["name", "image", "price", "availability", "brand", "rating"] as const;
+
+const productData: Check = ({ $ }, { productData: m }) => {
+  const nodes = jsonLdNodes($);
+  const product = nodes.find((n) => [n["@type"]].flat().includes("Product"));
+  const isProductPage = !!product || meta($, "og:type")?.toLowerCase().startsWith("product") === true;
+  if (!isProductPage) return result("product-data", "agent", m.title, 4, 1, m.notApplicable, m.fix);
+  if (!product) return result("product-data", "agent", m.title, 4, 0, m.missing, m.fix);
+
+  const offers = [product.offers].flat().filter((o): o is Record<string, unknown> => !!o && typeof o === "object");
+  const offer = offers[0] ?? {};
+  const has: Record<(typeof PRODUCT_FIELDS)[number], boolean> = {
+    name: !!product.name,
+    image: !!product.image,
+    price: (offer.price !== undefined || offer.lowPrice !== undefined) && !!offer.priceCurrency,
+    availability: !!offer.availability,
+    brand: !!product.brand,
+    rating: !!product.aggregateRating || !!product.review,
+  };
+  const missing = PRODUCT_FIELDS.filter((f) => !has[f]);
+  return result(
+    "product-data", "agent", m.title, 4, (PRODUCT_FIELDS.length - missing.length) / PRODUCT_FIELDS.length,
+    missing.length === 0 ? m.complete : m.partial({ missing: missing.map((f) => m.fields[f]).join(", ") }),
+    m.fix,
+  );
+};
+
+const markdownAccess: Check = ({ $, files }, { markdownAccess: m }) => {
+  const alternate = $('link[rel="alternate"][type="text/markdown"]').length > 0;
+  const full = !!files.llmsFullTxt && files.llmsFullTxt.trim().length > 200;
+  return result(
+    "markdown-access", "agent", m.title, 2, full || alternate ? 1 : 0,
+    m.detail({ full, alternate }), m.fix,
+  );
+};
+
 /** Checks that depend on site-wide files rather than the individual page. */
-export const SITE_CHECKS: Check[] = [aiSearchBots, aiTrainingBots, llmsTxt, sitemap];
+export const SITE_CHECKS: Check[] = [aiSearchBots, aiTrainingBots, llmsTxt, sitemap, markdownAccess];
 
 export const PAGE_CHECKS: Check[] = [
   indexable,
@@ -233,6 +271,7 @@ export const PAGE_CHECKS: Check[] = [
   serverRendered, answerFormatting, freshness, evidence,
   authorship, aboutContact,
   https, speed, imageAlt,
+  productData,
 ];
 
 export function runChecks(ctx: CheckContext, checks: Check[] = [...SITE_CHECKS, ...PAGE_CHECKS]): CheckResult[] {

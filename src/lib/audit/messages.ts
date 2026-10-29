@@ -23,6 +23,11 @@ export interface CheckMessages {
   https: { title: string; ok: string; bad: string; fix: string };
   speed: { title: string; detail: Msg<{ ms: number }>; fix: string };
   alt: { title: string; none: string; detail: Msg<{ withAlt: number; total: number }>; fix: string };
+  productData: {
+    title: string; notApplicable: string; missing: string; complete: string;
+    partial: Msg<{ missing: string }>; fields: Record<"name" | "image" | "price" | "availability" | "brand" | "rating", string>; fix: string;
+  };
+  markdownAccess: { title: string; detail: Msg<{ full: boolean; alternate: boolean }>; fix: string };
 }
 
 const en: CheckMessages = {
@@ -131,6 +136,22 @@ const en: CheckMessages = {
     detail: ({ withAlt, total }) => `${withAlt}/${total} images have alt text.`,
     fix: "Describe images with alt text. Multimodal assistants and text-only crawlers both rely on it.",
   },
+  productData: {
+    title: "Product data for AI shopping agents",
+    notApplicable: "Not a product page, so no product data is needed.",
+    missing: "This looks like a product page, but it has no Product JSON-LD.",
+    complete: "Product JSON-LD includes name, image, price, availability, brand and ratings.",
+    partial: ({ missing }) => `Product JSON-LD is missing: ${missing}.`,
+    fields: { name: "name", image: "image", price: "price + currency", availability: "availability", brand: "brand", rating: "ratings/reviews" },
+    fix: "Give every product page complete Product JSON-LD (offers with price, currency and availability, brand, ratings). ChatGPT, Google AI Mode and shopping agents compare products from this data.",
+  },
+  markdownAccess: {
+    title: "Markdown version for AI agents",
+    detail: ({ full, alternate }) => full || alternate
+      ? `Found ${[full && "/llms-full.txt", alternate && "a Markdown alternate link"].filter(Boolean).join(" and ")}.`
+      : "No /llms-full.txt and no Markdown alternate versions of pages.",
+    fix: "Publish /llms-full.txt with your key content as Markdown, or link Markdown versions of pages with <link rel=\"alternate\" type=\"text/markdown\">. Agents read Markdown faster and more cheaply than HTML.",
+  },
 };
 
 const tr: CheckMessages = {
@@ -238,6 +259,22 @@ const tr: CheckMessages = {
     none: "Sayfada görsel yok.",
     detail: ({ withAlt, total }) => `${total} görselden ${withAlt} tanesinde alt metin var.`,
     fix: "Görselleri alt metinle tarif edin. Hem çok modlu asistanlar hem metin tabanlı botlar buna dayanır.",
+  },
+  productData: {
+    title: "Yapay zekâ alışveriş ajanları için ürün verisi",
+    notApplicable: "Ürün sayfası değil, ürün verisi gerekmiyor.",
+    missing: "Bu bir ürün sayfasına benziyor ama Product JSON-LD yok.",
+    complete: "Product JSON-LD'de ad, görsel, fiyat, stok durumu, marka ve puanlar var.",
+    partial: ({ missing }) => `Product JSON-LD'de eksik olanlar: ${missing}.`,
+    fields: { name: "ad", image: "görsel", price: "fiyat + para birimi", availability: "stok durumu", brand: "marka", rating: "puan/yorum" },
+    fix: "Her ürün sayfasına eksiksiz Product JSON-LD ekleyin (fiyat, para birimi ve stok durumu içeren offers, marka, puanlar). ChatGPT, Google AI Mode ve alışveriş ajanları ürünleri bu veriyle karşılaştırır.",
+  },
+  markdownAccess: {
+    title: "Yapay zekâ ajanları için Markdown sürümü",
+    detail: ({ full, alternate }) => full || alternate
+      ? `Bulundu: ${[full && "/llms-full.txt", alternate && "Markdown alternatif linki"].filter(Boolean).join(" ve ")}.`
+      : "/llms-full.txt yok, sayfaların Markdown sürümü de yok.",
+    fix: "Önemli içeriğinizi Markdown olarak /llms-full.txt adresinde yayınlayın ya da sayfaların Markdown sürümlerine <link rel=\"alternate\" type=\"text/markdown\"> ile link verin. Ajanlar Markdown'ı HTML'den çok daha hızlı ve ucuz okur.",
   },
 };
 
