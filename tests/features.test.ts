@@ -99,7 +99,7 @@ describe("badge", () => {
   it("renders score and escapes text", () => {
     const svg = badgeSvg(76, "B");
     expect(svg).toContain("76 · B");
-    expect(svg).toContain("#1d6b3a");
+    expect(svg).toContain("#0b7a52");
     expect(badgeSvg(null, null, "<x>")).toContain("&lt;x&gt;");
   });
 });

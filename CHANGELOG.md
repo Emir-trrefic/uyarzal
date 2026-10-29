@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+### Changed
+- **Own visual identity.** The warm beige, serif and terracotta palette read too much like other AI products. Quovra now has its own look: a cool light background, deep teal as the brand colour and a lime "highlighter" that marks your brand in AI answers.
+- Typography: Bricolage Grotesque for headings, Instrument Sans for text, JetBrains Mono for data. There is no serif anywhere.
+- A speech-bubble logo with a quotation mark (Quovra = being quoted), and lowercase "quovra" in the wordmark.
+- Emphasis uses a highlighter stroke instead of italics; a teal call-to-action panel carries a lime button.
+- Dark mode has its own mint/lime tokens, with contrast fixes for highlights and the logo.
+
 ## 0.3.2
 
 ### Added
