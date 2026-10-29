@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0
+
+### Changed
+- **Softmain brand family.** Quovra now shares Softmain's visual language (softmain.com.tr): an icy white background, glass surfaces, a navy sphere with an electric-blue rim (#3BBEFC), and the navy gradient #0f2027 → #2c5364 for primary actions.
+- Typography: Urbanist Black for headings, Manrope for text, and widely spaced small-caps labels, as in Softmain's "Sade · Zarif · Çarpıcı".
+- Wordmark: lowercase "quovra" with a glowing blue dot, echoing the Softmain logo.
+- The footer reads "softmain · a product by", linking to softmain.com.tr; the OG image and badge use the same palette.
+
 ## 0.4.0
 
 ### Changed

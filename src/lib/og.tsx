@@ -4,25 +4,25 @@ import { LANDING } from "./i18n/landing";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-/** Share image in the brand palette: deep teal, lime highlighter, cool paper. */
+/** Share image in the Softmain family: icy background, navy orb with a blue rim, blue dot wordmark. */
 export function ogImage(lang: Lang) {
   const t = LANDING[lang].hero;
-  const ink = "#0d1b18";
-  const teal = "#0b6b5d";
-  const lime = "#d4f25a";
+  const ink = "#04101c";
+  const blue = "#3bbefc";
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "60px 72px", background: "#f5f7f6", color: ink }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ width: 60, height: 52, borderRadius: 14, background: teal, color: lime, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 54, fontWeight: 700, lineHeight: 1, paddingTop: 22 }}>”</div>
-          <div style={{ display: "flex", fontSize: 50, fontWeight: 700, letterSpacing: -2 }}>quovra</div>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "64px 72px", background: "#eef4fa", color: ink, position: "relative" }}>
+        <div style={{ position: "absolute", width: 560, height: 560, right: -170, top: -260, borderRadius: 9999, background: "#03080f", boxShadow: `inset -14px 24px 50px ${blue}, 0 0 90px rgba(59,190,252,0.35)` }} />
+        <div style={{ display: "flex", alignItems: "flex-start", fontSize: 58, fontWeight: 900, letterSpacing: -3 }}>
+          quovra
+          <div style={{ width: 14, height: 14, borderRadius: 9999, background: blue, marginLeft: 4, marginTop: 8 }} />
         </div>
-        <div style={{ display: "flex", flexDirection: "column", marginTop: 70, fontSize: 80, lineHeight: 1.04, letterSpacing: -3.5, fontWeight: 700 }}>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: 76, fontSize: 82, lineHeight: 1.02, letterSpacing: -4, fontWeight: 900 }}>
           <span>{t.titleA}</span>
-          <span style={{ display: "flex" }}><span style={{ background: lime, padding: "0 10px" }}>{t.titleB}</span></span>
+          <span style={{ color: "#0b84e3" }}>{t.titleB}</span>
         </div>
-        <div style={{ display: "flex", marginTop: "auto", fontSize: 26, color: teal, fontWeight: 600 }}>
-          {"ChatGPT · Gemini · Claude · Perplexity · AI Overviews"}
+        <div style={{ display: "flex", marginTop: "auto", fontSize: 20, letterSpacing: 6, color: "#687a8d", fontWeight: 700 }}>
+          {"CHATGPT · GEMINI · CLAUDE · PERPLEXITY  —  BY SOFTMAIN"}
         </div>
       </div>
     ),

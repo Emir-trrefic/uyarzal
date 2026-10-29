@@ -11,6 +11,9 @@ export function SiteFooter({ lang }: { lang: Lang }) {
         <div>
           <Logo href={lang === "tr" ? "/tr" : "/"} />
           <p className="muted">{t.tagline}</p>
+          <a className="made-by" href="https://softmain.com.tr" target="_blank" rel="noopener">
+            {lang === "tr" ? <><strong>softmain</strong> {t.madeBy}</> : <>{t.madeBy} <strong>softmain</strong></>}
+          </a>
         </div>
         {t.cols.map((col) => (
           <div key={col.title}>

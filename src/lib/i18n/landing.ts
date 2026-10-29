@@ -182,6 +182,7 @@ const en = {
       { title: "Learn", links: [["GEO guide", "/guide"], ["GitHub", "REPO"], ["Türkçe", "/tr"]] },
     ],
     legal: "Open-source GEO toolkit · AGPL-3.0",
+    madeBy: "A product by",
   },
 };
 
@@ -347,6 +348,7 @@ const tr: LandingDict = {
       { title: "Öğren", links: [["GEO rehberi", "/tr/rehber"], ["GitHub", "REPO"], ["English", "/"]] },
     ],
     legal: "Açık kaynak GEO aracı · AGPL-3.0",
+    madeBy: "Bir ürünüdür",
   },
 };
 
