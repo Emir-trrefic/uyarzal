@@ -14,7 +14,7 @@ export function SiteNav({ lang, home = true }: { lang: Lang; home?: boolean }) {
           <a href={anchor("how")} className="hide-md">{t.product}</a>
           <a href={anchor("why")} className="hide-md">{t.why}</a>
           <a href={anchor("pricing")} className="hide-sm">{t.pricing}</a>
-          <a href={t.methodHref} className="hide-md">{t.method}</a>
+          <a href={t.guideHref} className="hide-md">{t.guide}</a>
           <a href={t.switchHref} hrefLang={lang === "tr" ? "en" : "tr"} className="lang-switch" aria-label={lang === "tr" ? "English" : "Türkçe"}>{t.switchLabel}</a>
           <a href={anchor("top")} className="btn small">{t.cta}</a>
         </nav>

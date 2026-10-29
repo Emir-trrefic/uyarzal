@@ -14,5 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/tr/yontem`, changeFrequency: "monthly", priority: 0.6,
       alternates: { languages: { en: `${SITE_URL}/methodology`, tr: `${SITE_URL}/tr/yontem` } },
     },
+    {
+      url: `${SITE_URL}/guide`, changeFrequency: "monthly", priority: 0.7,
+      alternates: { languages: { en: `${SITE_URL}/guide`, tr: `${SITE_URL}/tr/rehber` } },
+    },
+    {
+      url: `${SITE_URL}/tr/rehber`, changeFrequency: "monthly", priority: 0.7,
+      alternates: { languages: { en: `${SITE_URL}/guide`, tr: `${SITE_URL}/tr/rehber` } },
+    },
   ];
 }

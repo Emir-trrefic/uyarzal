@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.2
+
+### Added
+- **"What is GEO?" section**: a three-step visual (the customer asks, the AI reads, it names 2–3 brands) and an SEO vs. GEO table.
+- **"From the market" section**: six sourced market facts (ChatGPT ads, products in ChatGPT, reviews and local AI answers, local AI usage, answer volatility, category investment).
+- **GEO guide** (`/guide`, `/tr/rehber`): five one-minute lessons, each with a "what to do" list and a code example.
+
+### Changed
+- All landing copy is shorter: one or two sentences per item, and fewer FAQ and comparison rows.
+- Softer design: rounded corners, hairline rules, a terracotta accent, soft-tinted panels instead of black blocks, and alternating section backgrounds.
+
 ## 0.3.1
 
 ### Changed

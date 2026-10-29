@@ -53,20 +53,32 @@ export function Landing({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <section className="section">
+        <section className="section" id="geo">
           <div className="container">
-            <Head n={1} kicker={t.problem.kicker} title={t.problem.title} lead={t.problem.lead} />
-            <div className="stats">
-              {t.problem.stats.map((s, i) => (
-                <figure className="stat-col" key={s.value}>
-                  <div className="stat">{s.value}<sup>{i + 1}</sup></div>
-                  <p>{s.body}</p>
-                </figure>
+            <Head n={1} kicker={t.explain.kicker} title={t.explain.title} />
+            <ol className="flow">
+              {t.explain.flow.map((f) => (
+                <li key={f.n}>
+                  <span className="flow-n">{f.n}</span>
+                  <h3>{f.title}</h3>
+                  <p>{f.body}</p>
+                </li>
               ))}
-            </div>
-            <ol className="footnotes">
-              {t.problem.stats.map((s) => <li key={s.source}>{s.source}</li>)}
             </ol>
+            <div className="vs">
+              <h3>{t.explain.vsTitle}</h3>
+              <div className="table-wrap">
+                <table>
+                  <thead><tr><th /><th>SEO</th><th className="us">GEO</th></tr></thead>
+                  <tbody>
+                    {t.explain.vs.map(([label, seo, geo]) => (
+                      <tr key={label}><th scope="row">{label}</th><td>{seo}</td><td className="us">{geo}</td></tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <a className="text-link" href={t.nav.guideHref}>{t.explain.more} →</a>
+            </div>
           </div>
         </section>
 
@@ -85,9 +97,25 @@ export function Landing({ lang }: { lang: Lang }) {
           </div>
         </section>
 
+        <section className="section" id="market">
+          <div className="container">
+            <Head n={3} kicker={t.market.kicker} title={t.market.title} />
+            <ul className="market">
+              {t.market.items.map((m) => (
+                <li key={m.title}>
+                  <span className="market-fact">{m.fact}</span>
+                  <h3>{m.title}</h3>
+                  <p>{m.body}</p>
+                  <a href={m.href} target="_blank" rel="noopener noreferrer" className="market-src">{m.source} ↗</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <section className="section" id="why">
           <div className="container">
-            <Head n={3} kicker={t.compare.kicker} title={t.compare.title} />
+            <Head n={4} kicker={t.compare.kicker} title={t.compare.title} />
             <div className="table-wrap compare">
               <table>
                 <thead>
@@ -109,14 +137,14 @@ export function Landing({ lang }: { lang: Lang }) {
 
         <section className="section">
           <div className="container">
-            <Head n={4} kicker={t.useCases.kicker} title={t.useCases.title} />
+            <Head n={5} kicker={t.useCases.kicker} title={t.useCases.title} />
             <UseCases lang={lang} />
           </div>
         </section>
 
         <section className="section">
           <div className="container">
-            <Head n={5} kicker={t.future.kicker} title={t.future.title} />
+            <Head n={6} kicker={t.future.kicker} title={t.future.title} />
             <ul className="future-list">
               {t.future.items.map((f) => (
                 <li key={f.title}>
@@ -131,14 +159,14 @@ export function Landing({ lang }: { lang: Lang }) {
 
         <section className="section" id="pricing">
           <div className="container">
-            <Head n={6} kicker={t.pricing.kicker} title={t.pricing.title} lead={t.pricing.lead} />
+            <Head n={7} kicker={t.pricing.kicker} title={t.pricing.title} lead={t.pricing.lead} />
             <Pricing lang={lang} />
           </div>
         </section>
 
         <section className="section" id="faq">
           <div className="container">
-            <Head n={7} kicker="FAQ" title={t.faq.title} />
+            <Head n={8} kicker="FAQ" title={t.faq.title} />
             <div className="faq-list">
               {t.faq.items.map((f, i) => (
                 <details className="faq" key={f.q}>
@@ -151,11 +179,13 @@ export function Landing({ lang }: { lang: Lang }) {
         </section>
 
         <section className="final-cta">
-          <div className="container final-inner">
-            <h2>{t.cta.title}</h2>
-            <div>
-              <p>{t.cta.body}</p>
-              <a className="btn accent big" href="#top">{t.cta.button}</a>
+          <div className="container">
+            <div className="final-inner">
+              <h2>{t.cta.title}</h2>
+              <div>
+                <p>{t.cta.body}</p>
+                <a className="btn accent big" href="#top">{t.cta.button}</a>
+              </div>
             </div>
           </div>
         </section>
