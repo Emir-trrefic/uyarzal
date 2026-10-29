@@ -1,3 +1,5 @@
+import type { AnyNode, Element } from "domhandler";
+import type { Lang } from "../i18n";
 import { type Doc, meta } from "./extract";
 import { AI_BOTS } from "./robots";
 
@@ -11,16 +13,39 @@ function siteName($: Doc, url: URL): string {
   ) || url.hostname.replace(/^www\./, "");
 }
 
+const SKIP_PATH = /\/(log-?in|sign-?in|sign-?up|register|join|cart|basket|checkout|account|my-?account|password|logout|giris|uye-?ol|sepet|hesabim)(\/|$)/i;
+
+/**
+ * A link's label. Navigation links often nest a title and a description
+ * ("<a><span>Actions</span><span>CI/CD and automation</span></a>"); joining
+ * their text runs words together, so use the first text node instead.
+ */
+function linkLabel($: Doc, el: Element): string {
+  const aria = $(el).attr("aria-label")?.trim();
+  if (aria) return aria;
+  const texts: string[] = [];
+  const walk = (node: AnyNode) => {
+    if (node.type === "text") {
+      const t = node.data.replace(/\s+/g, " ").trim();
+      if (t) texts.push(t);
+    } else if (node.type === "tag") {
+      for (const child of node.children) walk(child);
+    }
+  };
+  walk(el);
+  return texts[0] ?? "";
+}
+
 function internalLinks($: Doc, base: URL, limit = 12): { title: string; href: string }[] {
   const seen = new Set<string>();
   const out: { title: string; href: string }[] = [];
   $("nav a[href], header a[href], footer a[href], main a[href]").each((_, el) => {
     if (out.length >= limit) return;
-    const text = $(el).text().replace(/\s+/g, " ").trim();
+    const text = linkLabel($, el);
     try {
       const u = new URL($(el).attr("href")!, base);
       u.hash = "";
-      if (u.hostname !== base.hostname || !text || text.length > 60) return;
+      if (u.hostname !== base.hostname || !text || text.length > 60 || SKIP_PATH.test(u.pathname)) return;
       const key = u.pathname.replace(/\/$/, "") || "/";
       if (key === "/" || seen.has(key)) return;
       seen.add(key);
@@ -32,24 +57,38 @@ function internalLinks($: Doc, base: URL, limit = 12): { title: string; href: st
   return out;
 }
 
-export function generateLlmsTxt($: Doc, url: URL): string {
+const LLMS_TEXT = {
+  en: {
+    oneLine: (name: string) => `What ${name} offers, in one sentence.`,
+    about: (name: string) => `${name} is ... (two or three sentences: who you serve, what makes you different, where you operate).`,
+    keyPages: "Key pages", home: "Home", optional: "Optional", sitemap: "Sitemap",
+  },
+  tr: {
+    oneLine: (name: string) => `${name} ne sunuyor, tek cümleyle.`,
+    about: (name: string) => `${name} ... (iki üç cümle: kime hizmet veriyorsunuz, sizi farklı kılan ne, nerede faaliyet gösteriyorsunuz).`,
+    keyPages: "Önemli sayfalar", home: "Ana sayfa", optional: "Ek kaynaklar", sitemap: "Site haritası",
+  },
+};
+
+export function generateLlmsTxt($: Doc, url: URL, lang: Lang = "en"): string {
+  const t = LLMS_TEXT[lang];
   const name = siteName($, url);
-  const desc = meta($, "description") ?? meta($, "og:description") ?? `What ${name} offers, in one sentence.`;
+  const desc = meta($, "description") ?? meta($, "og:description") ?? t.oneLine(name);
   const links = internalLinks($, url);
   const lines = [
     `# ${name}`,
     "",
     `> ${desc}`,
     "",
-    `${name} is ... (two or three sentences: who you serve, what makes you different, where you operate).`,
+    t.about(name),
     "",
-    "## Key pages",
+    `## ${t.keyPages}`,
     "",
-    ...(links.length ? links.map((l) => `- [${l.title}](${l.href})`) : [`- [Home](${url.origin}/)`]),
+    ...(links.length ? links.map((l) => `- [${l.title}](${l.href})`) : [`- [${t.home}](${url.origin}/)`]),
     "",
-    "## Optional",
+    `## ${t.optional}`,
     "",
-    `- [Sitemap](${url.origin}/sitemap.xml)`,
+    `- [${t.sitemap}](${url.origin}/sitemap.xml)`,
   ];
   return lines.join("\n") + "\n";
 }

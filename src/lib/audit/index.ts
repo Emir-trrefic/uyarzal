@@ -127,7 +127,7 @@ export async function runAudit(input: string, opts: AuditOptions = {}): Promise<
       schemaTypes: schemaTypes(jsonLdNodes($)),
     },
     generated: {
-      llmsTxt: generateLlmsTxt($, final),
+      llmsTxt: generateLlmsTxt($, final, lang),
       jsonLd: generateJsonLd($, final),
       robotsTxt: generateRobotsTxt(final),
     },

@@ -176,3 +176,5 @@ footer .container { display: flex; justify-content: space-between; gap: 16px; fl
   .card { break-inside: avoid; box-shadow: none; }
   pre.code { max-height: none; white-space: pre-wrap; }
 }
+/* Grid items default to min-width: auto, which lets wide <pre> blocks push cards off-screen. */
+.grid > * { min-width: 0; }

@@ -120,3 +120,27 @@ describe("TtlCache", () => {
     expect(c.get("a")).toBeUndefined();
   });
 });
+
+describe("llms.txt generator", () => {
+  const NAV = `<!doctype html><html><head><title>Acme</title></head><body><nav>
+    <a href="/features/actions"><span>Actions</span><span>CI/CD and automation</span></a>
+    <a href="/pricing" aria-label="Pricing plans">$</a>
+    <a href="/login">Sign in</a>
+    <a href="/sepet">Sepet</a>
+  </nav></body></html>`;
+
+  it("uses the first text of nested link labels and skips account links", async () => {
+    const report = await runAudit("https://acme.test", opts({ "/": { body: NAV } }));
+    const txt = report.generated.llmsTxt;
+    expect(txt).toContain("- [Actions](https://acme.test/features/actions)");
+    expect(txt).toContain("- [Pricing plans](https://acme.test/pricing)");
+    expect(txt).not.toContain("Sign in");
+    expect(txt).not.toContain("Sepet");
+  });
+
+  it("writes the template in Turkish for Turkish reports", async () => {
+    const report = await runAudit("https://acme.test", { ...opts({ "/": { body: NAV } }), lang: "tr" });
+    expect(report.generated.llmsTxt).toContain("## Önemli sayfalar");
+    expect(report.generated.llmsTxt).toContain("kime hizmet veriyorsunuz");
+  });
+});
