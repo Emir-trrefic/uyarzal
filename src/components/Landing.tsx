@@ -10,7 +10,7 @@ export function Landing({ lang }: { lang: Lang }) {
     <>
       <div className="container" id="top">
         <nav className="nav">
-          <a className="logo" href={lang === "tr" ? "/tr" : "/"}><span className="logo-mark">C</span>Citeable</a>
+          <a className="logo" href={lang === "tr" ? "/tr" : "/"}><span className="logo-mark">Q</span>Quovra</a>
           <div className="nav-links">
             <a href="#how" className="hide-sm">{t.nav.how}</a>
             <a href="#pricing">{t.nav.pricing}</a>
@@ -79,7 +79,7 @@ export function Landing({ lang }: { lang: Lang }) {
             "@graph": [
               {
                 "@type": "SoftwareApplication",
-                name: "Citeable",
+                name: "Quovra",
                 applicationCategory: "BusinessApplication",
                 operatingSystem: "Web",
                 inLanguage: lang,

@@ -2,9 +2,9 @@ import type { Lang } from "./index";
 
 const en = {
   meta: {
-    title: "Citeable — Get recommended by ChatGPT, Claude & Perplexity",
+    title: "Quovra — Get recommended by ChatGPT, Claude & Perplexity",
     description: "Free GEO audit: see whether AI assistants can find, understand and cite your website, then fix it with generated llms.txt, JSON-LD and robots.txt.",
-    ogTitle: "Citeable — AI search visibility audit",
+    ogTitle: "Quovra — AI search visibility audit",
     ogDescription: "Is ChatGPT recommending you, or your competitor? Find out in 10 seconds.",
   },
   nav: { how: "How it works", pricing: "Pricing", switchLabel: "Türkçe", switchHref: "/tr" },
@@ -12,7 +12,7 @@ const en = {
     eyebrow: "Generative Engine Optimization",
     titleA: "Is ChatGPT recommending you, or ",
     titleB: "your competitor?",
-    lead: "Citeable audits how AI assistants see your website, then hands you the exact fixes to get found, understood and cited by ChatGPT, Claude, Perplexity and Google AI Overviews.",
+    lead: "Quovra audits how AI assistants see your website, then hands you the exact fixes to get found, understood and cited by ChatGPT, Claude, Perplexity and Google AI Overviews.",
   },
   stats: [
     { value: "~40%", body: "visibility lift from adding statistics, quotes and citations, measured in the original GEO research (Princeton, KDD 2024)." },
@@ -49,12 +49,12 @@ const en = {
     items: [
       { q: "What is GEO (Generative Engine Optimization)?", a: "GEO is the practice of making your content easy for AI systems such as ChatGPT, Claude, Perplexity and Google AI Overviews to find, understand and cite. Where SEO wins clicks on a results page, GEO wins the mention inside the AI's answer." },
       { q: "Why does this matter now?", a: "A growing share of product research starts in an AI assistant, and AI Overviews already sit above organic results for a large share of Google queries. If an assistant cannot read your site, it recommends someone else." },
-      { q: "Does blocking GPTBot hurt me?", a: "GPTBot collects training data. Blocking it is a valid licensing choice. Blocking search and user-fetch agents such as OAI-SearchBot or ChatGPT-User, however, removes you from live answers. Citeable shows the two separately." },
-      { q: "What is llms.txt?", a: "A proposed standard: a Markdown file at /llms.txt that tells AI agents who you are and which pages matter. Citeable drafts one from your own navigation." },
+      { q: "Does blocking GPTBot hurt me?", a: "GPTBot collects training data. Blocking it is a valid licensing choice. Blocking search and user-fetch agents such as OAI-SearchBot or ChatGPT-User, however, removes you from live answers. Quovra shows the two separately." },
+      { q: "What is llms.txt?", a: "A proposed standard: a Markdown file at /llms.txt that tells AI agents who you are and which pages matter. Quovra drafts one from your own navigation." },
       { q: "Is my data stored?", a: "No. The free audit fetches public pages, scores them in memory and returns the result. Nothing is saved." },
     ],
   },
-  footer: { left: "Citeable · Open-source GEO toolkit", right: "Built for the age of AI search." },
+  footer: { left: "Quovra · Open-source GEO toolkit", right: "Built for the age of AI search." },
   audit: {
     placeholder: "yourcompany.com",
     inputLabel: "Website URL",
@@ -93,7 +93,7 @@ const en = {
   },
   probe: {
     lockedTitle: "See what AI actually says about you",
-    lockedBody: "The mention probe asks an AI assistant the questions your buyers ask, then measures your share of voice and lists the competitors it recommends instead. It is part of Citeable Pro.",
+    lockedBody: "The mention probe asks an AI assistant the questions your buyers ask, then measures your share of voice and lists the competitors it recommends instead. It is part of Quovra Pro.",
     seePlans: "See plans",
     title: "AI mention probe",
     lead: "Ask the questions your customers ask. One per line, up to five.",
@@ -119,9 +119,9 @@ export type UiDict = typeof en;
 
 const tr: UiDict = {
   meta: {
-    title: "Citeable — ChatGPT, Claude ve Perplexity sizi önersin",
+    title: "Quovra — ChatGPT, Claude ve Perplexity sizi önersin",
     description: "Ücretsiz GEO denetimi: yapay zekâ asistanları sitenizi bulabiliyor, anlayabiliyor ve önerebiliyor mu görün; hazır llms.txt, JSON-LD ve robots.txt ile düzeltin.",
-    ogTitle: "Citeable — Yapay zekâ arama görünürlüğü denetimi",
+    ogTitle: "Quovra — Yapay zekâ arama görünürlüğü denetimi",
     ogDescription: "ChatGPT sizi mi öneriyor, rakibinizi mi? 10 saniyede öğrenin.",
   },
   nav: { how: "Nasıl çalışır", pricing: "Fiyatlar", switchLabel: "English", switchHref: "/" },
@@ -129,7 +129,7 @@ const tr: UiDict = {
     eyebrow: "Üretken Motor Optimizasyonu (GEO)",
     titleA: "ChatGPT sizi mi öneriyor, yoksa ",
     titleB: "rakibinizi mi?",
-    lead: "Citeable, yapay zekâ asistanlarının sitenizi nasıl gördüğünü denetler ve ChatGPT, Claude, Perplexity ve Google AI Overviews tarafından bulunup önerilmeniz için gereken düzeltmeleri hazır olarak verir.",
+    lead: "Quovra, yapay zekâ asistanlarının sitenizi nasıl gördüğünü denetler ve ChatGPT, Claude, Perplexity ve Google AI Overviews tarafından bulunup önerilmeniz için gereken düzeltmeleri hazır olarak verir.",
   },
   stats: [
     { value: "~%40", body: "görünürlük artışı: istatistik, alıntı ve kaynak eklemenin etkisi, orijinal GEO araştırmasında ölçüldü (Princeton, KDD 2024)." },
@@ -166,12 +166,12 @@ const tr: UiDict = {
     items: [
       { q: "GEO (Üretken Motor Optimizasyonu) nedir?", a: "GEO, içeriğinizin ChatGPT, Claude, Perplexity ve Google AI Overviews gibi yapay zekâ sistemleri tarafından kolayca bulunmasını, anlaşılmasını ve alıntılanmasını sağlama işidir. SEO arama sonuçlarında tıklama kazandırır, GEO ise yapay zekânın cevabının içinde adınızın geçmesini sağlar." },
       { q: "Bu neden şimdi önemli?", a: "Ürün araştırmalarının giderek artan bir kısmı yapay zekâ asistanlarında başlıyor ve Google aramalarının önemli bir bölümünde AI Overviews organik sonuçların üstünde çıkıyor. Asistan sitenizi okuyamazsa başkasını önerir." },
-      { q: "GPTBot'u engellemek bana zarar verir mi?", a: "GPTBot eğitim verisi toplar; engellemek geçerli bir lisans tercihidir. Ama OAI-SearchBot veya ChatGPT-User gibi arama ve kullanıcı botlarını engellemek sizi canlı cevaplardan tamamen çıkarır. Citeable bu ikisini ayrı gösterir." },
-      { q: "llms.txt nedir?", a: "Önerilen bir standart: /llms.txt adresinde, yapay zekâ ajanlarına kim olduğunuzu ve hangi sayfaların önemli olduğunu anlatan bir Markdown dosyası. Citeable bunu sitenizin menüsünden sizin için hazırlar." },
+      { q: "GPTBot'u engellemek bana zarar verir mi?", a: "GPTBot eğitim verisi toplar; engellemek geçerli bir lisans tercihidir. Ama OAI-SearchBot veya ChatGPT-User gibi arama ve kullanıcı botlarını engellemek sizi canlı cevaplardan tamamen çıkarır. Quovra bu ikisini ayrı gösterir." },
+      { q: "llms.txt nedir?", a: "Önerilen bir standart: /llms.txt adresinde, yapay zekâ ajanlarına kim olduğunuzu ve hangi sayfaların önemli olduğunu anlatan bir Markdown dosyası. Quovra bunu sitenizin menüsünden sizin için hazırlar." },
       { q: "Verilerim saklanıyor mu?", a: "Hayır. Ücretsiz denetim herkese açık sayfaları okur, bellekte puanlar ve sonucu döndürür. Hiçbir şey kaydedilmez." },
     ],
   },
-  footer: { left: "Citeable · Açık kaynak GEO aracı", right: "Yapay zekâ arama çağı için yapıldı." },
+  footer: { left: "Quovra · Açık kaynak GEO aracı", right: "Yapay zekâ arama çağı için yapıldı." },
   audit: {
     placeholder: "sirketiniz.com",
     inputLabel: "Web sitesi adresi",
@@ -210,7 +210,7 @@ const tr: UiDict = {
   },
   probe: {
     lockedTitle: "Yapay zekâ sizin hakkınızda gerçekte ne diyor?",
-    lockedBody: "Mention probe, müşterilerinizin sorduğu soruları bir yapay zekâ asistanına sorar; görünürlük payınızı ölçer ve sizin yerinize önerilen rakipleri listeler. Citeable Pro'nun parçasıdır.",
+    lockedBody: "Mention probe, müşterilerinizin sorduğu soruları bir yapay zekâ asistanına sorar; görünürlük payınızı ölçer ve sizin yerinize önerilen rakipleri listeler. Quovra Pro'nun parçasıdır.",
     seePlans: "Planları gör",
     title: "AI mention probe",
     lead: "Müşterilerinizin sorduğu soruları yazın. Her satıra bir tane, en fazla beş.",

@@ -8,7 +8,7 @@
 - **Sharing and export.** `/?url=` links re-run an audit, plus Markdown download, print-ready PDF layout and `format: "markdown"` in the API.
 - **Score badge.** `GET /api/badge?url=` returns an embeddable SVG.
 - **Lead capture.** Waitlist forms on pricing and in reports post to `/api/lead`, which forwards to `LEAD_WEBHOOK_URL`.
-- SEO for Citeable itself: hreflang alternates, `SoftwareApplication` and `FAQPage` JSON-LD, generated sitemap, robots and Open Graph images.
+- SEO for Quovra itself: hreflang alternates, `SoftwareApplication` and `FAQPage` JSON-LD, generated sitemap, robots and Open Graph images.
 - CLI flags `--lang`, `--pages` and `--markdown`.
 
 ### Fixed

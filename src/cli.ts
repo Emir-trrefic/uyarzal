@@ -3,7 +3,7 @@ import { runAudit } from "./lib/audit/index.ts";
 import { toMarkdown } from "./lib/audit/markdown.ts";
 
 const COLORS = { pass: "\x1b[32m", warn: "\x1b[33m", fail: "\x1b[31m", dim: "\x1b[2m", bold: "\x1b[1m", reset: "\x1b[0m" };
-const USAGE = `Usage: citeable <url> [options]
+const USAGE = `Usage: quovra <url> [options]
 
   --json            print the full report as JSON
   --markdown        print a shareable Markdown report
@@ -33,7 +33,7 @@ async function main() {
     console.log(toMarkdown(report));
   } else {
     const c = COLORS;
-    console.log(`\n${c.bold}Citeable GEO audit${c.reset}  ${report.finalUrl}`);
+    console.log(`\n${c.bold}Quovra GEO audit${c.reset}  ${report.finalUrl}`);
     console.log(`${c.bold}Score ${report.score}/100  Grade ${report.grade}${c.reset}${report.siteScore !== undefined ? `  (site average ${report.siteScore})` : ""}\n`);
     for (const check of [...report.checks].sort((a, b) => a.status.localeCompare(b.status))) {
       console.log(`${c[check.status]}${check.status.toUpperCase().padEnd(4)}${c.reset} ${check.title} ${c.dim}(${check.score}/${check.weight})${c.reset}`);

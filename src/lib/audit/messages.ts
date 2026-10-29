@@ -42,7 +42,7 @@ const en: CheckMessages = {
     title: "llms.txt guide for AI agents",
     missing: "No /llms.txt found.",
     found: ({ noTitle, noLinks }) => `Found /llms.txt${noTitle ? " without an H1 title" : ""}${noLinks ? " without links to key pages" : ""}.`,
-    fix: "Publish /llms.txt: a Markdown summary of who you are with links to your most important pages. Citeable generates one for you.",
+    fix: "Publish /llms.txt: a Markdown summary of who you are with links to your most important pages. Quovra generates one for you.",
   },
   sitemap: {
     title: "XML sitemap",
@@ -150,7 +150,7 @@ const tr: CheckMessages = {
     title: "Yapay zekâ ajanları için llms.txt rehberi",
     missing: "/llms.txt bulunamadı.",
     found: ({ noTitle, noLinks }) => `/llms.txt bulundu${noTitle ? ", ama H1 başlığı yok" : ""}${noLinks ? ", önemli sayfalara link yok" : ""}.`,
-    fix: "/llms.txt yayınlayın: kim olduğunuzu anlatan ve en önemli sayfalarınıza link veren kısa bir Markdown özeti. Citeable sizin için hazırlıyor.",
+    fix: "/llms.txt yayınlayın: kim olduğunuzu anlatan ve en önemli sayfalarınıza link veren kısa bir Markdown özeti. Quovra sizin için hazırlıyor.",
   },
   sitemap: {
     title: "XML site haritası",

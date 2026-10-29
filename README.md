@@ -1,18 +1,18 @@
-# Citeable
+# Quovra
 
 **Get recommended by ChatGPT, Claude, Perplexity and Google AI Overviews.**
 
-Citeable is an open-source **GEO (Generative Engine Optimization)** toolkit. It audits how AI assistants see your website, scores it across 20 weighted checks, and generates the exact fixes: `llms.txt`, Organization JSON-LD and `robots.txt` rules. The optional **AI Mention Probe** asks an AI model the questions your buyers ask and measures your share of voice.
+Quovra is an open-source **GEO (Generative Engine Optimization)** toolkit. It audits how AI assistants see your website, scores it across 20 weighted checks, and generates the exact fixes: `llms.txt`, Organization JSON-LD and `robots.txt` rules. The optional **AI Mention Probe** asks an AI model the questions your buyers ask and measures your share of voice.
 
-![Citeable report](docs/screenshot-report.png)
+![Quovra report](docs/screenshot-report.png)
 
 ## Why
 
-Search is moving from ten blue links to one synthesized answer. If an assistant cannot crawl, parse or trust your site, it recommends someone else, and you never see the lost click. SEO tools measure rankings; Citeable measures whether **AI can cite you**.
+Search is moving from ten blue links to one synthesized answer. If an assistant cannot crawl, parse or trust your site, it recommends someone else, and you never see the lost click. SEO tools measure rankings; Quovra measures whether **AI can cite you**.
 
 ## Features
 
-| Area | What Citeable checks |
+| Area | What Quovra checks |
 | --- | --- |
 | **AI access** | robots.txt against 14 AI agents (OAI-SearchBot, ChatGPT-User, GPTBot, Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot, Perplexity-User, Googlebot, Google-Extended, Bingbot, Applebot-Extended, meta-externalagent, CCBot). Search and training bots are scored separately. Also `llms.txt`, sitemap and noindex. |
 | **Structure** | Schema.org JSON-LD types, FAQ content, heading hierarchy, title/description, Open Graph, canonical and `lang`. |
@@ -61,14 +61,14 @@ curl -X POST localhost:3000/api/audit -H 'content-type: application/json' \
 | Variable | Purpose |
 | --- | --- |
 | `ANTHROPIC_API_KEY` | Enables the AI Mention Probe. |
-| `CITEABLE_PROBE_MODEL` | Model for the probe (default `claude-opus-5-5`). |
+| `QUOVRA_PROBE_MODEL` | Model for the probe (default `claude-opus-5-5`). |
 | `LEAD_WEBHOOK_URL` | HTTPS endpoint that receives sign-ups as JSON. |
 | `NEXT_PUBLIC_SITE_URL` | Public URL, used for metadata, sitemap and share links. |
 | `RATE_LIMIT_PER_HOUR` | Audits per IP per hour (default 20; multi-page scans are limited to 5). |
 
 ### AI Mention Probe (optional)
 
-Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY`. The probe uses `claude-opus-5-5` at low effort by default; override with `CITEABLE_PROBE_MODEL`.
+Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY`. The probe uses `claude-opus-5-5` at low effort by default; override with `QUOVRA_PROBE_MODEL`.
 
 ## Architecture
 
@@ -98,7 +98,7 @@ Scoring: every check has a weight, and the weights sum to 100. Grade A ≥ 85, B
 ## Deploy
 
 - **Vercel:** import the repo and set `ANTHROPIC_API_KEY` if you want the probe.
-- **Docker:** `docker build -t citeable . && docker run -p 3000:3000 citeable`
+- **Docker:** `docker build -t quovra . && docker run -p 3000:3000 quovra`
 
 ## Roadmap
 
@@ -114,12 +114,12 @@ Scoring: every check has a weight, and the weights sum to 100. Grade A ≥ 85, B
 
 ## License
 
-[AGPL-3.0](LICENSE). You can self-host and modify Citeable freely. If you offer a modified version as a network service, you must publish your changes. Commercial licenses are available.
+[AGPL-3.0](LICENSE). You can self-host and modify Quovra freely. If you offer a modified version as a network service, you must publish your changes. Commercial licenses are available.
 
 ---
 
 ## 🇹🇷 Türkçe özet
 
-**Citeable**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). İş modeli ve pazar araştırması için: [docs/IS_PLANI.md](docs/IS_PLANI.md).
+**Quovra**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). İş modeli ve pazar araştırması için: [docs/IS_PLANI.md](docs/IS_PLANI.md).
 
 ![Türkçe çok sayfalı rapor](docs/screenshot-pages-tr.png)

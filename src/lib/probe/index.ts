@@ -29,7 +29,7 @@ export interface ProbeReport {
 }
 
 export const MAX_PROMPTS = 5;
-const MODEL = process.env.CITEABLE_PROBE_MODEL ?? "claude-opus-5-5";
+const MODEL = process.env.QUOVRA_PROBE_MODEL ?? "claude-opus-5-5";
 
 const SYSTEM = `You are a knowledgeable assistant helping someone choose a product, service or provider.
 Answer the way you normally would for a real user. When recommendations are appropriate, recommend

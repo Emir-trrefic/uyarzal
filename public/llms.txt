@@ -1,11 +1,11 @@
-# Citeable
+# Quovra
 
-> Citeable is an open-source GEO (Generative Engine Optimization) toolkit that audits how AI assistants such as ChatGPT, Claude, Perplexity and Google AI Overviews see a website, and generates fixes.
+> Quovra is an open-source GEO (Generative Engine Optimization) toolkit that audits how AI assistants such as ChatGPT, Claude, Perplexity and Google AI Overviews see a website, and generates fixes.
 
-Citeable runs 20 weighted checks across AI crawler access, structure, content, trust and technical health, and generates llms.txt, Organization JSON-LD and robots.txt rules. A paid tier monitors AI share of voice over time.
+Quovra runs 20 weighted checks across AI crawler access, structure, content, trust and technical health, and generates llms.txt, Organization JSON-LD and robots.txt rules. A paid tier monitors AI share of voice over time.
 
 ## Key pages
 
-- [Free GEO audit](https://citeable.app/)
-- [Pricing](https://citeable.app/#pricing)
+- [Free GEO audit](https://quovra.app/)
+- [Pricing](https://quovra.app/#pricing)
 - [Source code](https://github.com/Emir-trrefic/uyarzal)

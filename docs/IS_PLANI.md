@@ -1,4 +1,4 @@
-# Citeable — İş Planı ve Pazar Araştırması
+# Quovra — İş Planı ve Pazar Araştırması
 
 *Hazırlanma: Ekim 2026*
 
@@ -53,7 +53,7 @@ Ayrıca incelenen diğer trendler: KOBİ'ler için yapay zekâ ajanları (2026'd
 | 6 | 10.000 | %1,5 | 120 | 30 | ~6.450 $ |
 | 12 | 30.000 | %2 | 480 | 120 | ~25.800 $ |
 
-Probe maliyeti: soru başına birkaç sent. Pro planda 25 soru/hafta ile kullanıcı başına aylık maliyet birkaç dolar seviyesinde kalır, brüt marj %80'in üzerinde hedeflenir. (Kesin maliyeti seçilen modele göre ölçün; daha ucuz model `CITEABLE_PROBE_MODEL` ile ayarlanabilir.)
+Probe maliyeti: soru başına birkaç sent. Pro planda 25 soru/hafta ile kullanıcı başına aylık maliyet birkaç dolar seviyesinde kalır, brüt marj %80'in üzerinde hedeflenir. (Kesin maliyeti seçilen modele göre ölçün; daha ucuz model `QUOVRA_PROBE_MODEL` ile ayarlanabilir.)
 
 **Ek gelir kanalları:**
 - Danışmanlık ve "biz düzeltelim" hizmeti (tek seferlik 300–1.500 $)
@@ -70,7 +70,7 @@ Probe maliyeti: soru başına birkaç sent. Pro planda 25 soru/hafta ile kullan�
 
 ## 5. Rekabet
 
-Profound, Otterly.ai, Peec AI, Semrush AI Toolkit gibi oyuncular var. Bunlar çoğunlukla **pahalı (aylık 99–500 $+) ve sadece izleme odaklı**. Citeable'ın farkı:
+Profound, Otterly.ai, Peec AI, Semrush AI Toolkit gibi oyuncular var. Bunlar çoğunlukla **pahalı (aylık 99–500 $+) ve sadece izleme odaklı**. Quovra'nın farkı:
 
 - **Ücretsiz ve açık kaynak denetim:** şeffaf puanlama, kara kutu yok
 - **Sadece ölçmüyor, düzeltiyor:** hazır kod üretiyor
@@ -78,7 +78,7 @@ Profound, Otterly.ai, Peec AI, Semrush AI Toolkit gibi oyuncular var. Bunlar ço
 
 ## 6. Sonraki adımlar (öncelik sırasıyla)
 
-1. Vercel'e deploy et ve bir alan adı al (ör. citeable.app, citeable.io)
+1. Vercel'e deploy et ve bir alan adı al (ör. quovra.app, quovra.io)
 2. Stripe ödeme ve kullanıcı hesapları (Supabase/Clerk)
 3. Haftalık izleme için cron ve e-posta (Resend)
 4. Product Hunt ve Show HN lansmanı

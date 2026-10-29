@@ -45,7 +45,7 @@ export function Report({ report, lang }: { report: AuditReport; lang: Lang }) {
     const blob = new Blob([toMarkdown(report)], { type: "text/markdown" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `citeable-${host}.md`;
+    a.download = `quovra-${host}.md`;
     a.click();
     URL.revokeObjectURL(a.href);
   }

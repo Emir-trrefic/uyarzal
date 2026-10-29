@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Lang } from "./i18n";
 import { UI } from "./i18n/ui";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://citeable.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://quovra.app";
 export const REPO_URL = "https://github.com/Emir-trrefic/uyarzal";
 
 export function buildMetadata(lang: Lang): Metadata {

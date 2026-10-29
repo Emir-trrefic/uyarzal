@@ -2,7 +2,7 @@ import { assertPublicHost, UnsafeUrlError } from "./ssrf";
 import type { PageSnapshot } from "./types";
 
 export const USER_AGENT =
-  "Mozilla/5.0 (compatible; CiteableBot/0.1; +https://github.com/Emir-trrefic/uyarzal)";
+  "Mozilla/5.0 (compatible; QuovraBot/0.1; +https://github.com/Emir-trrefic/uyarzal)";
 
 const MAX_BYTES = 3 * 1024 * 1024;
 const MAX_REDIRECTS = 5;
