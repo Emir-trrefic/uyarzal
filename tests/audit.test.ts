@@ -1,21 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { runAudit } from "@/lib/audit";
+import { opts } from "./helpers";
 
 const words = Array.from({ length: 400 }, (_, i) => `word${i}`).join(" ");
 const GOOD = readFileSync(new URL("./fixtures/good.html", import.meta.url), "utf8").replace("REPLACE_TEXT", words);
 const SPA = `<!doctype html><html><head><title>App</title></head><body><div id="root"></div><script src="/app.js"></script></body></html>`;
-
-function fakeFetch(routes: Record<string, { body: string; type?: string; status?: number }>): typeof fetch {
-  return (async (input: string | URL | Request) => {
-    const url = new URL(input instanceof Request ? input.url : input.toString());
-    const route = routes[url.pathname];
-    if (!route) return new Response("<html>not found</html>", { status: 404, headers: { "content-type": "text/html" } });
-    return new Response(route.body, { status: route.status ?? 200, headers: { "content-type": route.type ?? "text/html" } });
-  }) as typeof fetch;
-}
-
-const opts = (routes: Parameters<typeof fakeFetch>[0]) => ({ fetchImpl: fakeFetch(routes), skipHostCheck: true });
 
 describe("runAudit", () => {
   it("scores a well-optimised page highly", async () => {

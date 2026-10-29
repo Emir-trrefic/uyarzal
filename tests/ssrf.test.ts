@@ -25,3 +25,18 @@ describe("URL safety", () => {
     await expect(assertPublicHost(new URL("http://localhost/"))).rejects.toThrow(UnsafeUrlError);
   });
 });
+
+describe("localized URL errors", () => {
+  it("translates by error code", async () => {
+    const { localizedUrlError } = await import("@/lib/audit/ssrf");
+    let caught: unknown;
+    try {
+      normalizeUrl("ftp://x.com");
+    } catch (err) {
+      caught = err;
+    }
+    expect(caught).toBeInstanceOf(UnsafeUrlError);
+    expect(localizedUrlError(caught as UnsafeUrlError, "tr")).toBe("Sadece http ve https adresleri destekleniyor.");
+    expect(localizedUrlError(caught as UnsafeUrlError, "en")).toBe("Only http and https URLs are supported.");
+  });
+});

@@ -20,7 +20,11 @@ Search is moving from ten blue links to one synthesized answer. If an assistant 
 | **Trust** | Author and organization identity, About and Contact pages. |
 | **Technical** | HTTPS, response time, image alt text. |
 | **Fix generator** | Drafts `llms.txt` from your navigation, Organization + WebSite JSON-LD with `sameAs` links, and robots.txt rules for AI search crawlers. |
+| **Whole-site scan** | Crawls up to 10 pages from your sitemap (or homepage links) and ranks them by score, so you see which pages drag visibility down. |
+| **Share & export** | Shareable report links (`/?url=example.com`), Markdown download, print-ready PDF, and an embeddable score badge. |
+| **English & Turkish** | Full UI and reports in both languages (`/` and `/tr`), with hreflang, localized errors and auto-detection in the API. |
 | **AI Mention Probe** | Runs up to 5 buyer questions through Claude, then reports whether you are mentioned, your rank, and the competitors recommended instead. |
+| **Lead capture** | Pricing and in-report waitlist forms post to `/api/lead` and forward to any webhook (Zapier, Make, n8n…). |
 
 ## Quick start
 
@@ -35,13 +39,32 @@ Command line, which also works as a CI gate:
 npm run audit -- example.com
 npm run audit -- example.com --json
 npm run audit -- example.com --min-score=70   # exits 1 below the threshold
+npm run audit -- example.com --pages=10 --lang=tr --markdown > rapor.md
 ```
 
 HTTP API:
 
 ```bash
-curl -X POST localhost:3000/api/audit -H 'content-type: application/json' -d '{"url":"example.com"}'
+curl -X POST localhost:3000/api/audit -H 'content-type: application/json' \
+  -d '{"url":"example.com","lang":"tr","pages":10,"format":"markdown"}'
 ```
+
+| Endpoint | Purpose |
+| --- | --- |
+| `POST /api/audit` | `{ url, lang?: "en" \| "tr", pages?: 1-10, format?: "json" \| "markdown" }`. Results are cached for 10 minutes. |
+| `GET /api/badge?url=example.com` | SVG score badge, CDN-cacheable for a day. |
+| `POST /api/lead` | `{ email, plan, site?, lang? }` → forwarded to `LEAD_WEBHOOK_URL`. |
+| `POST /api/probe` | AI Mention Probe (requires `ANTHROPIC_API_KEY`). |
+
+### Environment variables
+
+| Variable | Purpose |
+| --- | --- |
+| `ANTHROPIC_API_KEY` | Enables the AI Mention Probe. |
+| `CITEABLE_PROBE_MODEL` | Model for the probe (default `claude-opus-5-5`). |
+| `LEAD_WEBHOOK_URL` | HTTPS endpoint that receives sign-ups as JSON. |
+| `NEXT_PUBLIC_SITE_URL` | Public URL, used for metadata, sitemap and share links. |
+| `RATE_LIMIT_PER_HOUR` | Audits per IP per hour (default 20; multi-page scans are limited to 5). |
 
 ### AI Mention Probe (optional)
 
@@ -55,11 +78,17 @@ src/
     ssrf.ts         URL normalisation + private-network blocking on every redirect hop
     fetcher.ts      capped, timed fetch with a crawler user agent
     robots.ts       RFC 9309 robots.txt evaluation for 14 AI agents
-    checks.ts       20 weighted checks, each returning status, points, detail and fix
+    checks.ts       20 weighted checks (4 site-level, 16 page-level)
+    messages.ts     check texts in English and Turkish
+    sitemap.ts      sitemap parsing and page selection for multi-page scans
     generators.ts   llms.txt / JSON-LD / robots.txt generators
+    markdown.ts     shareable Markdown report
   lib/probe/      AI Mention Probe (Anthropic SDK)
-  app/            Next.js App Router: landing page + /api/audit + /api/probe
-  components/     report UI
+  lib/i18n/       language detection + UI dictionary (en, tr)
+  app/(en)        English site at /
+  app/(tr)/tr     Turkish site at /tr
+  app/api/        audit, badge, lead, probe
+  components/     landing page and report UI
   cli.ts          terminal client
 tests/            vitest suite with a fake fetch, no network needed
 ```
@@ -73,11 +102,14 @@ Scoring: every check has a weight, and the weights sum to 100. Grade A ≥ 85, B
 
 ## Roadmap
 
+- [x] Multi-page crawl from the sitemap
+- [x] Turkish localisation
+- [x] Shareable reports, Markdown/PDF export, score badge
+- [x] Waitlist / lead capture
 - [ ] Accounts, saved sites and weekly monitoring (Pro)
 - [ ] Stripe billing
-- [ ] Multi-page crawl from the sitemap
 - [ ] Probe across several AI providers, with share-of-voice trends
-- [ ] White-label PDF reports and a public API (Agency)
+- [ ] White-label reports and API keys (Agency)
 - [ ] WordPress / Shopify plugin that applies fixes in one click
 
 ## License
@@ -88,4 +120,6 @@ Scoring: every check has a weight, and the weights sum to 100. Grade A ≥ 85, B
 
 ## 🇹🇷 Türkçe özet
 
-**Citeable**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. İş modeli ve pazar araştırması için: [docs/IS_PLANI.md](docs/IS_PLANI.md).
+**Citeable**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). İş modeli ve pazar araştırması için: [docs/IS_PLANI.md](docs/IS_PLANI.md).
+
+![Türkçe çok sayfalı rapor](docs/screenshot-pages-tr.png)

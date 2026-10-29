@@ -37,12 +37,24 @@ export interface SiteFiles {
   sitemapFound: boolean;
 }
 
+export interface PageResult {
+  url: string;
+  status: number;
+  score: number;
+  grade: Grade;
+  /** Titles of the failing checks, worst first. */
+  issues: string[];
+}
+
+export type Grade = "A" | "B" | "C" | "D" | "F";
+
 export interface AuditReport {
+  lang: "en" | "tr";
   url: string;
   finalUrl: string;
   fetchedAt: string;
   score: number;
-  grade: "A" | "B" | "C" | "D" | "F";
+  grade: Grade;
   categories: Record<Category, { score: number; max: number }>;
   checks: CheckResult[];
   bots: BotAccess[];
@@ -53,6 +65,10 @@ export interface AuditReport {
     wordCount: number;
     schemaTypes: string[];
   };
+  /** Additional pages scanned from the sitemap (multi-page audits only). */
+  pages?: PageResult[];
+  /** Average page score across the home page and `pages`. */
+  siteScore?: number;
   generated: {
     llmsTxt: string;
     jsonLd: string;

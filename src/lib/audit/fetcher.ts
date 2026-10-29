@@ -49,7 +49,7 @@ export async function fetchPage(url: URL, opts: FetchOptions = {}): Promise<Page
     if (res.status >= 300 && res.status < 400 && res.headers.get("location")) {
       current = new URL(res.headers.get("location")!, current);
       if (current.protocol !== "http:" && current.protocol !== "https:") {
-        throw new UnsafeUrlError("Redirected to an unsupported protocol.");
+        throw new UnsafeUrlError("Redirected to an unsupported protocol.", "protocol");
       }
       continue;
     }
