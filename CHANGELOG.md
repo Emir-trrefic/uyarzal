@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0
+
+### Added
+- **Investor page** (`/investors`, `/tr/yatirimci`): positioning as the visibility layer for the AI era, sourced market metrics, product layers (live and roadmap), moat, business model, a $500K pre-seed ask with use of funds, 18-month milestones, and a deck-request form (`investor` lead type).
+- **Investor document** (`docs/YATIRIM.md`): why now, problem, solution layers, competition, moat, model, a three-year scenario projection, use of funds, funding sources, likely investor questions and risks.
+
+### Changed
+- **Calm, Apple-like design**: white and #f5f5f7 bands, large centred headlines, generous spacing, borderless rounded tiles, pill buttons, a translucent thin nav bar, a product-shot style sample report, and Geist type. The Softmain blue survives as the logo dot.
+
 ## 0.5.0
 
 ### Changed

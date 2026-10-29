@@ -22,5 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/tr/rehber`, changeFrequency: "monthly", priority: 0.7,
       alternates: { languages: { en: `${SITE_URL}/guide`, tr: `${SITE_URL}/tr/rehber` } },
     },
+    {
+      url: `${SITE_URL}/investors`, changeFrequency: "monthly", priority: 0.5,
+      alternates: { languages: { en: `${SITE_URL}/investors`, tr: `${SITE_URL}/tr/yatirimci` } },
+    },
+    {
+      url: `${SITE_URL}/tr/yatirimci`, changeFrequency: "monthly", priority: 0.5,
+      alternates: { languages: { en: `${SITE_URL}/investors`, tr: `${SITE_URL}/tr/yatirimci` } },
+    },
   ];
 }

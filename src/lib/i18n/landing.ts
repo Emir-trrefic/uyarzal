@@ -179,7 +179,7 @@ const en = {
     tagline: "AI search visibility, measured properly.",
     cols: [
       { title: "Product", links: [["Free audit", "#top"], ["Pricing", "#pricing"], ["Methodology", "/methodology"]] },
-      { title: "Learn", links: [["GEO guide", "/guide"], ["GitHub", "REPO"], ["Türkçe", "/tr"]] },
+      { title: "Company", links: [["GEO guide", "/guide"], ["Investors", "/investors"], ["GitHub", "REPO"], ["Türkçe", "/tr"]] },
     ],
     legal: "Open-source GEO toolkit · AGPL-3.0",
     madeBy: "A product by",
@@ -345,7 +345,7 @@ const tr: LandingDict = {
     tagline: "Yapay zekâ arama görünürlüğü, doğru ölçülmüş.",
     cols: [
       { title: "Ürün", links: [["Ücretsiz denetim", "#top"], ["Fiyatlar", "#pricing"], ["Yöntem", "/tr/yontem"]] },
-      { title: "Öğren", links: [["GEO rehberi", "/tr/rehber"], ["GitHub", "REPO"], ["English", "/"]] },
+      { title: "Şirket", links: [["GEO rehberi", "/tr/rehber"], ["Yatırımcılar", "/tr/yatirimci"], ["GitHub", "REPO"], ["English", "/"]] },
     ],
     legal: "Açık kaynak GEO aracı · AGPL-3.0",
     madeBy: "Bir ürünüdür",

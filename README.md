@@ -127,4 +127,4 @@ Scoring: every check has a weight, and the weights sum to 100 across six categor
 
 ## 🇹🇷 Türkçe özet
 
-**Quovra**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). Strateji, rakip analizi, paketler ve eylem planı: [docs/STRATEJI.md](docs/STRATEJI.md).
+**Quovra**, web sitelerinin yapay zekâ asistanlarında (ChatGPT, Claude, Perplexity, Google AI Overviews) **bulunabilir, anlaşılabilir ve önerilebilir** olup olmadığını ölçen açık kaynak bir GEO (Üretken Motor Optimizasyonu) aracıdır. 20 kontrol yapar, 100 üzerinden puan verir ve düzeltmeleri (llms.txt, JSON-LD, robots.txt) hazır kod olarak üretir. Arayüz ve raporlar tamamen Türkçe de kullanılabilir (`/tr`). Strateji, rakip analizi, paketler ve eylem planı: [docs/STRATEJI.md](docs/STRATEJI.md). Yatırımcı belgesi: [docs/YATIRIM.md](docs/YATIRIM.md).

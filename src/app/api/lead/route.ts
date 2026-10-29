@@ -4,7 +4,7 @@ import { clientKey, rateLimit } from "@/lib/ratelimit";
 export const runtime = "nodejs";
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,}$/i;
-const PLANS = ["starter", "growth", "agency", "setup", "monitoring"];
+const PLANS = ["starter", "growth", "agency", "setup", "monitoring", "investor"];
 
 /**
  * Collects upgrade / waitlist sign-ups. Leads are forwarded as JSON to
