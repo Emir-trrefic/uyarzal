@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0
+
+### Added
+- **Vision section**: the company's mission and three pillars (transparent, evidence-based, for everyone).
+- **"From the bottom to the top" demo**: an animated AI answer in which your brand climbs from #5 to #1 week by week, with the rank, score and share of voice counting up. It runs only while on screen, respects reduced motion, and is labelled as an illustrative scenario.
+- **"Under the hood" code showcase**: a dark editor window with tabs for the robots.txt diff, llms.txt, JSON-LD, API and CLI, syntax colouring, and line-by-line typing.
+- **Scroll reveal**: sections fade up as they enter the viewport. Content stays visible without JavaScript, and reduced-motion users see no movement.
+
 ## 0.7.0
 
 ### Added

@@ -2,6 +2,9 @@ import type { Lang } from "@/lib/i18n";
 import { LANDING } from "@/lib/i18n/landing";
 import { PRICES } from "@/lib/pricing";
 import { AuditTool } from "./AuditTool";
+import { CodeShowcase } from "./CodeShowcase";
+import { RankClimb } from "./RankClimb";
+import { ScrollReveal } from "./ScrollReveal";
 import { Pricing } from "./Pricing";
 import { SamplePreview } from "./SamplePreview";
 import { SiteFooter } from "./SiteFooter";
@@ -17,7 +20,7 @@ function Mark({ value }: { value: boolean | string }) {
 /** Section header: a § number on a rule, then the kicker and title. */
 function Head({ n, kicker, title, lead }: { n: number; kicker: string; title: string; lead?: string }) {
   return (
-    <header className="sec-head">
+    <header className="sec-head reveal">
       <div className="sec-rule"><span>§ {String(n).padStart(2, "0")}</span><span>{kicker}</span></div>
       <h2 className="section-title">{title}</h2>
       {lead && <p className="section-lead">{lead}</p>}
@@ -54,10 +57,36 @@ export function Landing({ lang }: { lang: Lang }) {
           </div>
         </section>
 
+        <section className="section vision" id="vision">
+          <div className="container">
+            <div className="vision-inner reveal">
+              <p className="sec-rule">{t.vision.kicker}</p>
+              <h2 className="vision-title">{t.vision.title}</h2>
+              <p className="vision-body">{t.vision.body}</p>
+              <p className="vision-mission">{t.vision.mission}</p>
+            </div>
+            <ul className="pillars">
+              {t.vision.pillars.map((p, i) => (
+                <li key={p.title} className="reveal" style={{ transitionDelay: `${i * 120}ms` }}>
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section" id="climb">
+          <div className="container">
+            <Head n={0} kicker={t.climb.kicker} title={t.climb.title} lead={t.climb.lead} />
+            <div className="reveal"><RankClimb lang={lang} /></div>
+          </div>
+        </section>
+
         <section className="section" id="geo">
           <div className="container">
             <Head n={1} kicker={t.explain.kicker} title={t.explain.title} />
-            <ol className="flow">
+            <ol className="reveal flow">
               {t.explain.flow.map((f) => (
                 <li key={f.n}>
                   <span className="flow-n">{f.n}</span>
@@ -86,7 +115,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <section className="section" id="how">
           <div className="container">
             <Head n={2} kicker={t.steps.kicker} title={t.steps.title} />
-            <ol className="steps">
+            <ol className="reveal steps">
               {t.steps.items.map((s) => (
                 <li className="step" key={s.n}>
                   <span className="step-n">{s.n}</span>
@@ -98,10 +127,17 @@ export function Landing({ lang }: { lang: Lang }) {
           </div>
         </section>
 
+        <section className="section code-section" id="code">
+          <div className="container">
+            <Head n={0} kicker={t.code.kicker} title={t.code.title} lead={t.code.lead} />
+            <div className="reveal"><CodeShowcase lang={lang} /></div>
+          </div>
+        </section>
+
         <section className="section" id="market">
           <div className="container">
             <Head n={3} kicker={t.market.kicker} title={t.market.title} />
-            <ul className="market">
+            <ul className="reveal market">
               {t.market.items.map((m) => (
                 <li key={m.title}>
                   <span className="market-fact">{m.fact}</span>
@@ -117,7 +153,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <section className="section" id="why">
           <div className="container">
             <Head n={4} kicker={t.compare.kicker} title={t.compare.title} />
-            <div className="table-wrap compare">
+            <div className="reveal table-wrap compare">
               <table>
                 <thead>
                   <tr><th />{t.compare.cols.map((c, i) => <th key={c} className={i === 0 ? "us" : ""}>{c}</th>)}</tr>
@@ -146,7 +182,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <section className="section">
           <div className="container">
             <Head n={6} kicker={t.future.kicker} title={t.future.title} />
-            <ul className="future-list">
+            <ul className="reveal future-list">
               {t.future.items.map((f) => (
                 <li key={f.title}>
                   <span className={`status-tag ${f.tag === "Live" || f.tag === "Yayında" ? "live" : ""}`}>{f.tag}</span>
@@ -168,7 +204,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <section className="section" id="faq">
           <div className="container">
             <Head n={8} kicker="FAQ" title={t.faq.title} />
-            <div className="faq-list">
+            <div className="reveal faq-list">
               {t.faq.items.map((f, i) => (
                 <details className="faq" key={f.q}>
                   <summary><span className="faq-n">{String(i + 1).padStart(2, "0")}</span>{f.q}</summary>
@@ -193,6 +229,7 @@ export function Landing({ lang }: { lang: Lang }) {
       </main>
 
       <SiteFooter lang={lang} />
+      <ScrollReveal />
 
       <script
         type="application/ld+json"
