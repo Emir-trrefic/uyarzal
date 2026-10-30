@@ -199,8 +199,8 @@ const authorship: Check = ({ $ }, { authorship: m }) => {
 
 const aboutContact: Check = ({ $ }, { aboutContact: m }) => {
   const hrefs = $("a[href]").map((_, el) => `${$(el).attr("href")} ${$(el).text()}`.toLowerCase()).get();
-  const about = hrefs.some((h) => /about|hakkimizda|hakkında|kurumsal|uber-uns|a-propos|quienes/.test(h));
-  const contact = hrefs.some((h) => /contact|iletisim|iletişim|kontakt|contacto/.test(h));
+  const about = hrefs.some((h) => /about|hakkimizda|hakkında|kurumsal|uber-uns|über uns|ueber-uns|unternehmen|a-propos|à propos|qui-sommes|quienes|sobre|chi-siamo|over-ons|om-oss|o-nas/.test(h));
+  const contact = hrefs.some((h) => /contact|iletisim|iletişim|kontakt|impressum|contacto|contatti|contato|nous-contacter/.test(h));
   return result("about-contact", "trust", m.title, 3, (about ? 0.5 : 0) + (contact ? 0.5 : 0), m.detail({ about, contact }), m.fix);
 };
 

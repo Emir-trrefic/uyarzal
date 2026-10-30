@@ -1,5 +1,6 @@
 import type { Lang } from "@/lib/i18n";
 import { LANDING } from "@/lib/i18n/landing";
+import { PRICES } from "@/lib/pricing";
 import { AuditTool } from "./AuditTool";
 import { Pricing } from "./Pricing";
 import { SamplePreview } from "./SamplePreview";
@@ -206,9 +207,9 @@ export function Landing({ lang }: { lang: Lang }) {
                 operatingSystem: "Web",
                 inLanguage: lang,
                 description: t.meta.description,
-                offers: t.pricing.plans.map((p) => ({
-                  "@type": "Offer", name: p.name, price: p.monthly, priceCurrency: lang === "tr" ? "TRY" : "USD",
-                })),
+                offers: t.pricing.plans.flatMap((p) => (["USD", "EUR", "GBP", "TRY"] as const).map((cur) => ({
+                  "@type": "Offer", name: p.name, price: PRICES[p.id][cur].monthly, priceCurrency: cur,
+                }))),
               },
               {
                 "@type": "FAQPage",

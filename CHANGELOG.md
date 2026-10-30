@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.0
+
+### Added
+- **International pricing**: regional price points in USD, EUR, GBP and TRY, set per market rather than converted. Includes a currency switcher and an automatic guess from browser language and time zone; JSON-LD offers list every currency.
+- An FAQ entry on global use, in both languages.
+
+### Changed
+- English content is market-neutral (e.g. "near me" examples), and the comparison table includes a "works for any site, in any language" row.
+- Plan quotas follow the API cost research: Agency now gets 300 questions on 4 engines, measurement runs weekly, and confidence intervals combine a month of answers.
+- The About and Contact check recognises German, French, Spanish, Italian, Dutch, Scandinavian and Polish page names (including Impressum).
+- Strategy and investor documents carry the new prices, quotas and unit economics.
+
 ## 0.6.0
 
 ### Added

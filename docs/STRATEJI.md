@@ -64,43 +64,39 @@
 
 **Konumlandırma cümlesi:** *"Yapay zekâ görünürlüğünü doğru ölçen ve düzelten tek Türk aracı: ölç, düzelt, kanıtla."*
 
-## 5. Paketler ve kapasiteler (karar)
+## 5. Paketler ve kapasiteler (güncel karar)
 
-| | Ücretsiz | Başlangıç | **Büyüme** | Ajans | Kurumsal |
+Quovra ilk günden **küresel** satılır: arayüz Türkçe ve İngilizce, fiyatlar dört para biriminde. Fiyatlar kur çevrimiyle değil, her pazara uygun yuvarlak rakamlarla belirlenir. Site, ziyaretçinin para birimini tarayıcısından tahmin eder; ziyaretçi elle de değiştirebilir.
+
+| Aylık fiyat | Ücretsiz | Başlangıç | **Büyüme** | Ajans | Kurumsal |
 |---|---|---|---|---|---|
-| Aylık (TR) | ₺0 | ₺790 | **₺1.990** | ₺5.990 | Özel |
-| Yıllık (aylık karşılığı) | – | ₺660 | ₺1.660 | ₺4.990 | Özel |
-| Global (aylık / yıllık) | $0 | $24 / $20 | $59 / $49 | $179 / $149 | Özel |
-| Takip edilen site | – | 1 | 3 | 20 | ∞ |
-| Haftalık takip edilen sayfa | – | 50 | 300 | 2.000 | ∞ |
-| Müşteri sorusu | 3 (demo) | 30 | 100 | 500 | ∞ |
-| Yapay zekâ motoru | 1 | 2 | 4 | 6 | 6 |
-| Tekrar + güven aralığı | – | 3× | 3× | 3× | 5× |
-| Rakip takibi | – | 3 | 10 | site başına 25 | ∞ |
-| AI bot analitiği | – | – | ✓ | ✓ | ✓ |
-| Entegrasyonlar | – | – | ✓ | ✓ | ✓ |
-| Beyaz etiket + müşteri paneli | – | – | – | ✓ | ✓ |
-| API | – | – | – | ✓ | ✓ |
-| Kullanıcı | 1 | 1 | 3 | 10 | ∞ |
+| TRY | ₺0 | ₺790 | **₺1.990** | ₺5.990 | Özel |
+| USD | $0 | $24 | **$59** | $179 | Özel |
+| EUR | 0 € | 22 € | **55 €** | 169 € | Özel |
+| GBP | £0 | £19 | **£49** | £149 | Özel |
 
-**Ek hizmet:** Anahtar teslim kurulum ₺4.900'den başlayan fiyatla ($149+), tek seferlik.
+Yıllık ödemede 2 ay bedava (ör. $20 / $49 / $149 aylık karşılık). Kurulum hizmeti: ₺4.900 · $149 · 139 € · £119'dan başlar.
 
-### Neden bu fiyatlar?
-- **Başlangıç ₺790 ($24):** Otterly'nin 29 $'lık girişinin (15 soru) altında, 2 kat soru (30) ile. Türkiye'de KOBİ'nin "deneyebileceği" eşik.
-- **Büyüme ₺1.990 ($59):** Peec AI'ın giriş planına (~95 $, 50 soru) karşı 2 kat soru ve 4 motor, daha düşük fiyat. Hedef ana gelir paketi.
-- **Ajans ₺5.990 ($179):** Ajans 10+ müşteriye 1.000–3.000 ₺'ye GEO raporu satarak paketi kolayca amorti eder.
-- **Yıllık plan = 2 ay bedava:** Nakit akışı ve müşteriyi elde tutma.
-
-### Birim maliyet (tahmin; canlı kullanımda ölçülmeli)
-Aylık cevap sayısı = soru × motor × tekrar × 4,3 hafta.
-
-| Paket | Aylık cevap | Ucuz/orta modellerle cevap başına ~$0,003 | Gelir | Brüt marj |
+| Kapasite | Ücretsiz | Başlangıç | Büyüme | Ajans |
 |---|---|---|---|---|
-| Başlangıç | 30×2×3×4,3 ≈ 774 | ~$2,3 | $24 | ~%90 |
-| Büyüme | 100×4×3×4,3 ≈ 5.160 | ~$15 | $59 | ~%75 |
-| Ajans | 500×6×3×4,3 ≈ 38.700 | ~$116 | $179 | ~%35 ⚠️ |
+| Takip edilen site / sayfa | – | 1 / 50 | 3 / 300 | 20 / 2.000 |
+| Müşteri sorusu | 3 (demo) | 30 | 100 | **300** |
+| Yapay zekâ motoru | 1 | 2 | 4 | **4** (Kurumsal'da daha fazla) |
+| Ölçüm sıklığı | Tek sefer | Haftalık | Haftalık | Haftalık + istek üzerine |
+| Güven aralığı | – | Aylık birleştirilmiş | Aylık birleştirilmiş | Aylık birleştirilmiş |
+| Rakip takibi | – | 3 | 10 | Site başına 25 |
+| Kullanıcı | 1 | 1 | 3 | 10 |
 
-⚠️ **Ajans paketinde marj düşük.** Önlemler: ajans için motor başına soru kotası, en pahalı modelleri sadece seçili sorularda kullanmak, ya da fiyatı ₺7.990 / $229'a çekmek. İlk 10 ajans müşterisinden sonra gerçek maliyetle yeniden karar verilmeli.
+### Birim maliyet (API fiyat araştırmasına göre güncellendi)
+Gerçekçi ölçüm için motorların **internet aramalı** kullanılması gerekir. Cevap başına maliyet: ucuz model + arama ≈ **0,013 $**, orta model + arama ≈ 0,035 $. Bu yüzden ölçüm **haftada 1 kez** yapılır; güven aralığı ay içindeki tüm cevaplar birleştirilerek hesaplanır.
+
+| Paket | Aylık cevap (soru × motor × 4,3) | Maliyet (ucuz model + arama) | Gelir (USD) | Brüt marj |
+|---|---|---|---|---|
+| Başlangıç | 258 | ~4 $ | 24 $ | ~%85 |
+| Büyüme | 1.720 | ~26 $ | 59 $ | ~%55 |
+| Ajans | 5.160 | ~77 $ | 179 $ | ~%57 |
+
+Ek tasarruf: Gemini'nin ayda 5.000 ücretsiz araması, önbellek ve toplu işlem indirimleri (%20–50), girişim kredi programları. Her sağlayıcıda aylık harcama limiti zorunlu.
 
 ## 6. Eylem planı
 

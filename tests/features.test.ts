@@ -180,3 +180,26 @@ describe("agent readiness", () => {
     expect(c.status).toBe("pass");
   });
 });
+
+describe("regional pricing", () => {
+  it("guesses a sensible currency", async () => {
+    const { guessCurrency } = await import("@/lib/pricing");
+    expect(guessCurrency(["tr-TR"])).toBe("TRY");
+    expect(guessCurrency(["en-GB"])).toBe("GBP");
+    expect(guessCurrency(["de-DE"])).toBe("EUR");
+    expect(guessCurrency(["en-US"], "Europe/Paris")).toBe("EUR");
+    expect(guessCurrency(["en-US"], "America/New_York")).toBe("USD");
+  });
+
+  it("formats money per currency and keeps every plan priced in every currency", async () => {
+    const { formatMoney, PRICES, CURRENCIES } = await import("@/lib/pricing");
+    expect(formatMoney(1990, "TRY")).toBe("₺1.990");
+    expect(formatMoney(55, "EUR")).toBe("55 €");
+    expect(formatMoney(49, "GBP")).toBe("£49");
+    for (const plan of Object.values(PRICES)) {
+      for (const { code } of CURRENCIES) {
+        expect(plan[code].yearly).toBeLessThanOrEqual(plan[code].monthly);
+      }
+    }
+  });
+});

@@ -473,3 +473,6 @@ pre.code { background: var(--bg); border-radius: var(--radius-sm); padding: 16px
 .inv-metrics li, .inv-layers li, .inv-timeline li, .inv-bar { background: var(--tile); }
 .section:nth-of-type(even) :is(.inv-metrics li, .inv-layers li, .inv-timeline li, .inv-bar) { background: var(--tile-on-alt); }
 .inv-layers li:not(.live) { background: transparent !important; }
+.pricing-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+.pricing-controls .billing-toggle { margin: 0; }
+.currency-toggle button { padding: 8px 14px; font-variant-numeric: tabular-nums; }

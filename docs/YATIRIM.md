@@ -53,15 +53,17 @@
 
 ## 5. İş modeli
 
-| Gelir kalemi | Fiyat | Not |
-|---|---|---|
-| Başlangıç | ₺790/ay · $24/ay | 1 site, 30 soru, 2 motor |
-| Büyüme | ₺1.990/ay · $59/ay | 3 site, 100 soru, 4 motor (ana gelir paketi) |
-| Ajans | ₺5.990/ay · $179/ay | 20 site, 500 soru, beyaz etiket |
-| Kurulum hizmeti | ₺4.900'den · $149'dan | Tek seferlik, yüksek marjlı nakit akışı |
-| Veri / API | Kurumsal | Endeks ve kıyaslama verisi (yol haritası) |
+Quovra ilk günden küresel satılır: İngilizce ve Türkçe arayüz, dört para biriminde bölgesel fiyat.
 
-**Hedef birim ekonomisi:** brüt marj %75+, edinme maliyetinin 6 ayda geri dönmesi, ajans kanalında net gelir tutma %110+.
+| Gelir kalemi | TRY | USD | EUR | GBP | Not |
+|---|---|---|---|---|---|
+| Başlangıç | ₺790/ay | $24/ay | 22 €/ay | £19/ay | 1 site, 30 soru, 2 motor |
+| Büyüme | ₺1.990/ay | $59/ay | 55 €/ay | £49/ay | 3 site, 100 soru, 4 motor (ana gelir paketi) |
+| Ajans | ₺5.990/ay | $179/ay | 169 €/ay | £149/ay | 20 site, 300 soru, 4 motor, beyaz etiket |
+| Kurulum hizmeti | ₺4.900'den | $149'dan | 139 €'dan | £119'dan | Tek seferlik, yüksek marjlı nakit akışı |
+| Veri / API | Kurumsal | | | | Endeks ve kıyaslama verisi (yol haritası) |
+
+**Hedef birim ekonomisi:** Haftalık ölçüm ve internet aramalı ucuz modellerle paket bazında brüt marj %55–85 (bkz. STRATEJI.md §5). Edinme maliyetinin 6 ayda geri dönmesi, ajans kanalında net gelir tutma %110+.
 
 ## 6. Finansal projeksiyon (senaryo, garanti değildir)
 
