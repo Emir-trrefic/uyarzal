@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+### Changed
+- **Professional redesign of the landing page.** Midnight navigation with product, solutions, pricing, guide and investor links; a dark hero with the audit form on the left and a sample dashboard on the right; supported engines strip; three alternating feature rows (audit, fix, prove); market metrics; solutions; comparison; pricing; two-column FAQ; closing call-to-action band; four-column footer.
+- New design system in `globals.css`: hairline borders, white cards, 8 to 16 px radii, a single Cobalt accent, consistent section spacing. Investor, guide and methodology pages share it.
+
 ## 0.9.1
 
 ### Changed
