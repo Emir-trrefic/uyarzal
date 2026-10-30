@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1
+
+### Changed
+- **New palette.** Ice Frost `#F8FAFC` for backgrounds, Deep Midnight Blue `#0A192F` for headings and the dark bands (vision, code, closing panel, footer), Electric Cobalt `#2563EB` for buttons, links and accents, and Slate Gray `#475569` for body text instead of near-black.
+- Dark mode uses Deep Midnight as its background, with Cobalt actions and soft slate text. The OG image and badge follow the palette.
+
 ## 0.9.0
 
 ### Changed
