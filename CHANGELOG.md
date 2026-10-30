@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.0
+
+### Changed
+- **Brand palette using the 60-30-10 rule:** Alabaster White `#F1F5F9` (60%: backgrounds and cards), Deep Ocean `#0F172A` (30%: type, buttons, and the vision, code, closing and footer bands) and Neon Cyan `#06B6D4` (10%: logo dot, rank highlight, progress bars, meter needle, highlights).
+- Small text on light backgrounds uses the deeper cyan `#0E7490` so links and labels meet contrast guidelines. The bright cyan is kept for graphics and dark surfaces.
+- In dark mode, Deep Ocean is the background and cyan drives the buttons. The OG image and badge follow the palette.
+
 ## 0.8.1
 
 ### Changed

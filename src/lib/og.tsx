@@ -7,11 +7,11 @@ export const OG_SIZE = { width: 1200, height: 630 };
 /** Share image in the Softmain family: icy background, navy orb with a blue rim, blue dot wordmark. */
 export function ogImage(lang: Lang) {
   const t = LANDING[lang].hero;
-  const ink = "#04101c";
-  const blue = "#5bb8e8";
+  const ink = "#0f172a";
+  const blue = "#06b6d4";
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "64px 72px", background: "#f6f7f9", color: ink, position: "relative" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "64px 72px", background: "#f1f5f9", color: ink, position: "relative" }}>
         <div style={{ position: "absolute", width: 560, height: 560, right: -170, top: -260, borderRadius: 9999, background: "#03080f", boxShadow: `inset -14px 24px 50px ${blue}, 0 0 90px rgba(59,190,252,0.35)` }} />
         <div style={{ display: "flex", alignItems: "flex-start", fontSize: 58, fontWeight: 900, letterSpacing: -3 }}>
           quovra
@@ -19,7 +19,7 @@ export function ogImage(lang: Lang) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: 76, fontSize: 82, lineHeight: 1.02, letterSpacing: -4, fontWeight: 900 }}>
           <span>{t.titleA}</span>
-          <span style={{ color: "#2f5f93" }}>{t.titleB}</span>
+          <span style={{ color: "#0e7490" }}>{t.titleB}</span>
         </div>
         <div style={{ display: "flex", marginTop: "auto", fontSize: 20, letterSpacing: 6, color: "#687a8d", fontWeight: 700 }}>
           {"CHATGPT · GEMINI · CLAUDE · PERPLEXITY  —  BY SOFTMAIN"}
