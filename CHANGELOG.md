@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.1
+
+### Changed
+- **Softer, more premium palette.** The bright, saturated blue gives way to Softmain navy (#17243a) for buttons and a muted steel blue (#2f5f93) for links and accents. Pure white becomes a cool off-white (#f6f7f9) with gentle grey bands, and dark mode uses a soft anthracite instead of pure black. The call to action, upsell, code section and OG image follow the same tones.
+
 ## 0.8.0
 
 ### Added
